@@ -23,15 +23,17 @@
 
         body { font-family: 'Pretendard', sans-serif; background-color: #fff; color: #333; overflow-x: hidden; }
 
-        /* 🌿 네비게이션 & 헤더 */
+        /* 🌿 네비게이션 바 */
         .navbar { background-color: #fff; border-bottom: 1px solid #eee; padding: 15px 0; }
         .nav-link { font-weight: 600; margin: 0 10px; color: #555 !important; font-size: 0.95rem; }
+
+        /* 🌳 로고 헤더 섹션 (중앙 로고) */
         .logo-header { padding: 60px 0 40px 0; text-align: center; }
         .main-logo-img { width: 120px; height: auto; margin-bottom: 20px; }
         .main-title { font-family: 'Dohyeon', sans-serif; font-size: 3.5rem; color: var(--primary-green); margin-bottom: 5px; }
         .main-sub-title { font-family: 'Gaegu', cursive; font-size: 1.5rem; color: #888; }
 
-        /* 🍃 프로그램 카드 */
+        /* 🍃 프로그램 카드 (링크 연결) */
         .program-card { border: none; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
         .program-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .card-img-wrapper { height: 250px; overflow: hidden; position: relative; }
@@ -41,15 +43,18 @@
         /* 📰 뉴스 섹션 */
         .info-grid-section { padding: 80px 0; background-color: #fcfdf9; border-radius: 60px; margin: 60px 0; }
         .section-sub-header { font-family: 'Dohyeon', sans-serif; font-size: 1.8rem; color: var(--primary-green); margin-bottom: 35px; display: flex; align-items: center; }
+        .section-sub-header i { margin-right: 12px; }
+
         .news-card { background: white; border-radius: 25px; padding: 15px; margin-bottom: 15px; display: flex; align-items: center; border: 1px solid #f0f0f0; transition: 0.3s; }
         .news-card:hover { background-color: var(--warm-beige); transform: translateX(8px); }
         .news-thumb { width: 80px; height: 60px; border-radius: 15px; object-fit: cover; margin-right: 15px; }
         .news-tag { background: var(--point-yellow); color: #333; padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; margin-bottom: 5px; display: inline-block; }
         .news-title { font-weight: 600; font-size: 0.95rem; color: #444; }
 
-        /* 📍 사용자 정의 마커 (기억하고 있는 좌표!) */
+        /* 🗺️ 활동 지도 섹션 (⭐사용자님이 직접 수정한 스타일과 좌표 고정!) */
         .visual-map-wrap { position: relative; background: white; border-radius: 30px; padding: 15px; border: 1px solid #f0f0f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .map-base-img { width: 100%; border-radius: 20px; }
+        
         .map-marker { position: absolute; display: flex; align-items: center; background: white; padding: 2px 3px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: 'Gaegu', cursive; font-size: 0.75rem; font-weight: 800; z-index: 5; transition: 0.2s; }
         .map-marker i { color: #d9534f; margin-right: 4px; }
 
@@ -64,11 +69,8 @@
         .m-ansan { top: 68%; left: 34%; }
         .m-dongtan { top: 83%; left: 52%; }
 
+        /* 📱 우측 하단 상담 버튼 */
         .fab-button { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background-color: var(--point-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 1000; color: #333; text-decoration: none; }
-        
-        /* 🌟 모달 내부 스타일 추가 */
-        .modal-content { border-radius: 30px; border: none; }
-        .modal-body b { color: var(--leaf-green); }
     </style>
 </head>
 <body>
@@ -94,30 +96,31 @@
     </header>
 
     <div class="container">
-        <div class="row g-4 my-5" id="programs">
+        <h2 class="section-sub-header mb-4" data-aos="fade-right" id="programs"><i class="bi bi-stars"></i>추천 프로그램</h2>
+        <div class="row g-4 mb-5">
             <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal1">
+                <a href="detail1.html" class="program-card h-100 text-center text-decoration-none">
                     <div class="card-img-wrapper"><span class="badge-nature" style="background:#f9d423">시즌 특강</span><img src="images/banner1.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3">시즌별 특별 특강</h5><button class="btn btn-dark btn-sm rounded-pill px-4">자세히 보기</button></div>
-                </div>
+                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">시즌별 특별 특강</h5><button class="btn btn-dark btn-sm rounded-pill px-4">자세히 보기</button></div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal2">
+                <a href="detail2.html" class="program-card h-100 text-center text-decoration-none">
                     <div class="card-img-wrapper"><span class="badge-nature" style="background:#74c69d; color:white">정기 프로그램</span><img src="images/banner2.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3">정기 방과후숲반</h5><button class="btn btn-dark btn-sm rounded-pill px-4">프로그램 안내</button></div>
-                </div>
+                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">정기 방과후숲반</h5><button class="btn btn-dark btn-sm rounded-pill px-4">프로그램 안내</button></div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal3">
+                <a href="detail3.html" class="program-card h-100 text-center text-decoration-none">
                     <div class="card-img-wrapper"><span class="badge-nature" style="background:#8ecae6; color:white">단체 나들이</span><img src="images/banner3.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3">유치원/어린이집</h5><button class="btn btn-dark btn-sm rounded-pill px-4">체험 신청</button></div>
-                </div>
+                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">유치원/어린이집</h5><button class="btn btn-dark btn-sm rounded-pill px-4">체험 신청</button></div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal4">
+                <a href="detail4.html" class="program-card h-100 text-center text-decoration-none">
                     <div class="card-img-wrapper"><span class="badge-nature" style="background:#f9d423">교과 연계</span><img src="images/banner4.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3">학교 숲체험</h5><button class="btn btn-dark btn-sm rounded-pill px-4">문의하기</button></div>
-                </div>
+                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">학교 숲체험</h5><button class="btn btn-dark btn-sm rounded-pill px-4">문의하기</button></div>
+                </a>
             </div>
         </div>
 
@@ -134,8 +137,17 @@
                             <img src="images/news2.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=TV'">
                             <div><span class="news-tag">TV</span><div class="news-title">구해줘! 홈즈 숲체험 촬영 협조</div></div>
                         </div>
+                        <div class="news-card">
+                            <img src="images/news3.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=NEW'">
+                            <div><span class="news-tag">NEW</span><div class="news-title">2026년 상반기 정규숲 예약 마감</div></div>
+                        </div>
+                        <div class="news-card">
+                            <img src="images/news4.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=EVENT'">
+                            <div><span class="news-tag">EVENT</span><div class="news-title">네이버 카페 리뉴얼 당첨자 발표</div></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-lg-6" data-aos="fade-left">
                     <h3 class="section-sub-header"><i class="bi bi-map"></i>우리 동네 수업 지역</h3>
                     <div class="visual-map-wrap">
@@ -159,10 +171,10 @@
             <h2 class="section-sub-header"><i class="bi bi-geo-alt"></i>오시는 길</h2>
             <div class="overflow-hidden border-0 shadow-lg" style="border-radius: 40px; background: var(--warm-beige);">
                 <div class="row g-0">
-                    <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
+                    <div class="col-md-5 p-5 d-flex flex-column justify-content-center text-center text-md-start">
                         <h3 class="fw-bold mb-4" style="color: var(--primary-green);">숲속에서 만나요!</h3>
                         <p class="mb-4 text-muted">📍 경기 성남시 분당구 판교공원로1길 22-5 1층</p>
-                        <a href="https://map.naver.com/v5/search/산들생태학교" target="_blank" class="btn btn-success btn-lg rounded-pill shadow-sm">네이버 지도 열기</a>
+                        <a href="https://map.naver.com/v5/search/산들생태학교" target="_blank" class="btn btn-success btn-lg rounded-pill shadow-sm">네이버 지도로 열기</a>
                     </div>
                     <div class="col-md-7" style="min-height: 400px;">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.367066929944!2d127.08741367634283!3d37.392942433939634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5966504620f3%3A0xc312b9a7424699f8!2z7IKw65Ok7IOd7YOc7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1714061520000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -172,78 +184,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="programModal1" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content p-4">
-                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body">
-                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">🌿 시즌별 특별 특강</h2>
-                    <ul class="fs-5 list-unstyled">
-                        <li class="mb-3">🌞 <b>하루숲나들이:</b> 계절의 변화를 만끽하는 원데이 클래스</li>
-                        <li class="mb-3">🌙 <b>야간탐사특강:</b> 밤의 숲소리를 듣고 생물을 관찰하는 모험</li>
-                        <li class="mb-3">💧 <b>계곡특강:</b> 무더운 여름, 시원한 계곡 속 생태 체험</li>
-                        <li class="mb-3">✨ <b>별자리캠프:</b> 밤하늘의 별을 보며 꿈을 키우는 숲 캠핑</li>
-                        <li class="mb-3">❄️ <b>겨우살이특강:</b> 추운 겨울, 숲의 지혜를 배우는 시간</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="programModal2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content p-4">
-                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body">
-                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">📅 정기 방과후숲반 안내</h2>
-                    <ul class="fs-5 list-unstyled">
-                        <li class="mb-3">🎒 <b>연간 커리큘럼:</b> 매월 테마가 있는 체계적인 생태 교육</li>
-                        <li class="mb-3">🌳 <b>숲 관찰 일지:</b> 아이들이 직접 보고 느낀 자연을 기록</li>
-                        <li class="mb-3">🎨 <b>자연물 만들기:</b> 숲에서 얻은 재료로 만드는 창의 활동</li>
-                        <li class="mb-3">🤝 <b>사회성 향상:</b> 숲속 공동체 활동을 통한 협동심 함양</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="programModal3" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content p-4">
-                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body">
-                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">🐥 유치원/어린이집 숲나들이</h2>
-                    <ul class="fs-5 list-unstyled">
-                        <li class="mb-3">🔰 <b>안전한 체험:</b> 유아 전문 숲지도사가 동행하는 안전한 수업</li>
-                        <li class="mb-3">👂 <b>오감 체험:</b> 보고, 듣고, 만지며 자연과 친해지는 시간</li>
-                        <li class="mb-3">🎈 <b>숲속 놀이터:</b> 인위적인 교구 없이 자연 속에서 뛰어놀기</li>
-                        <li class="mb-3">🚌 <b>단체 맞춤형:</b> 원별 일정과 인원에 맞춘 커스터마이징 프로그램</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="programModal4" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content p-4">
-                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body">
-                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">🏫 초·중등 교과연계 숲체험</h2>
-                    <ul class="fs-5 list-unstyled">
-                        <li class="mb-3">📝 <b>교과과정 반영:</b> 과학, 실과 등 교과서 속 자연을 직접 확인</li>
-                        <li class="mb-3">🔍 <b>생물 다양성 탐구:</b> 전문 장비를 이용한 정밀한 생태 관찰</li>
-                        <li class="mb-3">🌿 <b>환경 감수성 교육:</b> 기후 위기와 탄소 중립을 배우는 실천 수업</li>
-                        <li class="mb-3">🎓 <b>현장 학습 최적화:</b> 대규모 인원도 효율적으로 진행 가능한 전문 강사진</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer class="py-5 text-center bg-light mt-5">
         <p class="text-muted small">© 2026 산들생태학교. All rights reserved.</p>
     </footer>
+
+    <a href="#" class="fab-button"><i class="bi bi-chat-dots-fill"></i></a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
