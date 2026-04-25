@@ -7,226 +7,246 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dohyeon&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 
     <style>
         :root {
-            --main-green: #2e7d32;
-            --light-green: #f1f8e9;
-            --accent-color: #4caf50;
+            --primary-green: #3a5a40;
+            --soft-green: #a3b18a;
+            --leaf-green: #588157;
+            --warm-beige: #fefae0;
+            --point-yellow: #f9d423;
         }
 
-        body { 
-            font-family: 'Pretendard', sans-serif; 
-            background-color: #f8f9fa; 
-            color: #333;
-            line-height: 1.6;
-        }
+        body { font-family: 'Pretendard', sans-serif; background-color: #fff; color: #333; overflow-x: hidden; }
 
-        /* 🌿 상단 입체감 배너 영역 */
-        .cafe-banner {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/banner.jpg');
-            background-color: var(--main-green);
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* 패럴랙스 효과 */
-            color: white;
-            text-align: center;
-        }
+        /* 🌿 네비게이션 & 헤더 */
+        .navbar { background-color: #fff; border-bottom: 1px solid #eee; padding: 15px 0; }
+        .nav-link { font-weight: 600; margin: 0 10px; color: #555 !important; font-size: 0.95rem; }
+        .logo-header { padding: 60px 0 40px 0; text-align: center; }
+        .main-logo-img { width: 120px; height: auto; margin-bottom: 20px; }
+        .main-title { font-family: 'Dohyeon', sans-serif; font-size: 3.5rem; color: var(--primary-green); margin-bottom: 5px; }
+        .main-sub-title { font-family: 'Gaegu', cursive; font-size: 1.5rem; color: #888; }
 
-        .banner-title { 
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
+        /* 🍃 프로그램 카드 */
+        .program-card { border: none; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
+        .program-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-img-wrapper { height: 250px; overflow: hidden; position: relative; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .badge-nature { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); padding: 5px 15px; border-radius: 50px; font-family: 'Gaegu', cursive; font-size: 1rem; z-index: 10; }
 
-        /* 📦 카드 및 레이아웃 입체감 디자인 */
-        .sidebar-box, .post-card, .direction-card {
-            background: white;
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
+        /* 📰 뉴스 섹션 */
+        .info-grid-section { padding: 80px 0; background-color: #fcfdf9; border-radius: 60px; margin: 60px 0; }
+        .section-sub-header { font-family: 'Dohyeon', sans-serif; font-size: 1.8rem; color: var(--primary-green); margin-bottom: 35px; display: flex; align-items: center; }
+        .news-card { background: white; border-radius: 25px; padding: 15px; margin-bottom: 15px; display: flex; align-items: center; border: 1px solid #f0f0f0; transition: 0.3s; }
+        .news-card:hover { background-color: var(--warm-beige); transform: translateX(8px); }
+        .news-thumb { width: 80px; height: 60px; border-radius: 15px; object-fit: cover; margin-right: 15px; }
+        .news-tag { background: var(--point-yellow); color: #333; padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; margin-bottom: 5px; display: inline-block; }
+        .news-title { font-weight: 600; font-size: 0.95rem; color: #444; }
 
-        .post-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-        }
+        /* 📍 사용자 정의 마커 (기억하고 있는 좌표!) */
+        .visual-map-wrap { position: relative; background: white; border-radius: 30px; padding: 15px; border: 1px solid #f0f0f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .map-base-img { width: 100%; border-radius: 20px; }
+        .map-marker { position: absolute; display: flex; align-items: center; background: white; padding: 2px 3px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: 'Gaegu', cursive; font-size: 0.75rem; font-weight: 800; z-index: 5; transition: 0.2s; }
+        .map-marker i { color: #d9534f; margin-right: 4px; }
 
-        .post-card img {
-            border-radius: 15px 15px 0 0;
-            height: 220px;
-            object-fit: cover;
-        }
+        .m-seoul { top: 48%; left: 45%; }
+        .m-wirye-gangdong { top: 58%; left: 52%; }
+        .m-hanam-misa { top: 63%; left: 60%; }
+        .m-gwangmyeong-anyang { top: 65%; left: 41%; }
+        .m-pangyo-bundang { top: 68%; left: 52%; }
+        .m-uiwang-gunpo { top: 72%; left: 40%; }
+        .m-suji-heungdeok { top: 73%; left: 60%; }
+        .m-suwon-gwanggyo { top: 77%; left: 50%; }  
+        .m-ansan { top: 68%; left: 34%; }
+        .m-dongtan { top: 83%; left: 52%; }
 
-        .sidebar-menu li {
-            padding: 12px 15px;
-            border-radius: 10px;
-            transition: 0.2s;
-            cursor: pointer;
-            list-style: none;
-        }
-
-        .sidebar-menu li:hover {
-            background-color: var(--light-green);
-            color: var(--main-green);
-            padding-left: 20px;
-        }
-
-        .section-title {
-            font-weight: 800;
-            color: var(--main-green);
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50%;
-            height: 4px;
-            background: var(--accent-color);
-        }
-
-        /* 지도 구역 스타일 */
-        .map-container {
-            min-height: 350px;
-            border-radius: 0 20px 20px 0;
-            overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .map-container { border-radius: 0 0 20px 20px; }
-            .banner-title { font-size: 2.5rem; }
-        }
+        .fab-button { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background-color: var(--point-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 1000; color: #333; text-decoration: none; }
+        
+        /* 🌟 모달 내부 스타일 추가 */
+        .modal-content { border-radius: 30px; border: none; }
+        .modal-body b { color: var(--leaf-green); }
     </style>
 </head>
 <body>
 
-    <header class="cafe-banner">
-        <div data-aos="fade-up">
-            <h1 class="banner-title">산들생태학교</h1>
-            <p class="fs-5">자연의 숨결을 느끼며 배우는 아이들의 놀이터</p>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <div class="ms-auto">
+                <a href="#intro" class="nav-link d-inline-block">소개</a>
+                <a href="#programs" class="nav-link d-inline-block">프로그램</a>
+                <a href="#activity-map" class="nav-link d-inline-block">활동 지역</a>
+                <a href="#contact" class="nav-link d-inline-block">오시는 길</a>
+                <button class="btn btn-outline-success btn-sm rounded-pill px-3 ms-2">로그인</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="logo-header" id="intro">
+        <div class="container" data-aos="fade-down">
+            <img src="images/logo.jpg" alt="산들생태학교 로고" class="main-logo-img" onerror="this.src='https://via.placeholder.com/120?text=Logo'">
+            <h1 class="main-title">산들생태학교</h1>
+            <p class="main-sub-title">자연의 숨결을 느끼며 배우는 아이들의 놀이터</p>
         </div>
     </header>
 
-    <div class="container my-5">
-        <div class="row">
-            
-            <div class="col-lg-3" data-aos="fade-right">
-                <div class="sidebar-box p-4 text-center mb-4">
-                    <img src="images/logo.jpg" class="rounded-circle mb-3 border border-4 border-white shadow-sm" style="width: 100px; height: 100px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/100'">
-                    <h5 class="fw-bold">산들생태학교</h5>
-                    <p class="text-muted small">판교 숲체험 전문 기관</p>
-                    <hr>
-                    <ul class="sidebar-menu text-start p-0">
-                        <li class="fw-bold" onclick="location.reload()">🏡 홈으로</li>
-                        <li>🌿 계절 프로그램</li>
-                        <li onclick="window.open('https://cafe.naver.com/sandeulsam')">📅 카페 방문하기</li>
-                        <li>📷 활동 앨범</li>
+    <div class="container">
+        <div class="row g-4 my-5" id="programs">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal1">
+                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#f9d423">시즌 특강</span><img src="images/banner1.jpg"></div>
+                    <div class="p-4"><h5 class="fw-bold mb-3">시즌별 특별 특강</h5><button class="btn btn-dark btn-sm rounded-pill px-4">자세히 보기</button></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal2">
+                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#74c69d; color:white">정기 프로그램</span><img src="images/banner2.jpg"></div>
+                    <div class="p-4"><h5 class="fw-bold mb-3">정기 방과후숲반</h5><button class="btn btn-dark btn-sm rounded-pill px-4">프로그램 안내</button></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal3">
+                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#8ecae6; color:white">단체 나들이</span><img src="images/banner3.jpg"></div>
+                    <div class="p-4"><h5 class="fw-bold mb-3">유치원/어린이집</h5><button class="btn btn-dark btn-sm rounded-pill px-4">체험 신청</button></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="program-card h-100 text-center" data-bs-toggle="modal" data-bs-target="#programModal4">
+                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#f9d423">교과 연계</span><img src="images/banner4.jpg"></div>
+                    <div class="p-4"><h5 class="fw-bold mb-3">학교 숲체험</h5><button class="btn btn-dark btn-sm rounded-pill px-4">문의하기</button></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="info-grid-section px-4 px-md-5" id="activity-map">
+            <div class="row g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h3 class="section-sub-header"><i class="bi bi-megaphone"></i>산들 NEWS</h3>
+                    <div class="news-list">
+                        <div class="news-card">
+                            <img src="images/news1.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=MBC'">
+                            <div><span class="news-tag">MBC</span><div class="news-title">뉴스투데이 '산들생태학교' 방영</div></div>
+                        </div>
+                        <div class="news-card">
+                            <img src="images/news2.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=TV'">
+                            <div><span class="news-tag">TV</span><div class="news-title">구해줘! 홈즈 숲체험 촬영 협조</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3 class="section-sub-header"><i class="bi bi-map"></i>우리 동네 수업 지역</h3>
+                    <div class="visual-map-wrap">
+                        <img src="images/map.jpg" alt="활동 지도" class="map-base-img" onerror="this.src='https://via.placeholder.com/600x400?text=Map.jpg'">
+                        <div class="map-marker m-seoul"><i class="bi bi-geo-alt-fill"></i>서울</div>
+                        <div class="map-marker m-wirye-gangdong"><i class="bi bi-geo-alt-fill"></i>위례/강동</div>
+                        <div class="map-marker m-hanam-misa"><i class="bi bi-geo-alt-fill"></i>하남/미사</div>
+                        <div class="map-marker m-gwangmyeong-anyang"><i class="bi bi-geo-alt-fill"></i>광명/안양</div>
+                        <div class="map-marker m-pangyo-bundang"><i class="bi bi-geo-alt-fill"></i>판교/분당</div>
+                        <div class="map-marker m-uiwang-gunpo"><i class="bi bi-geo-alt-fill"></i>의왕/군포</div>
+                        <div class="map-marker m-suji-heungdeok"><i class="bi bi-geo-alt-fill"></i>수지/흥덕</div>
+                        <div class="map-marker m-suwon-gwanggyo"><i class="bi bi-geo-alt-fill"></i>수원/광교</div>
+                        <div class="map-marker m-ansan"><i class="bi bi-geo-alt-fill"></i>안산</div>
+                        <div class="map-marker m-dongtan"><i class="bi bi-geo-alt-fill"></i>동탄</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="my-5 pt-5" id="contact" data-aos="fade-up">
+            <h2 class="section-sub-header"><i class="bi bi-geo-alt"></i>오시는 길</h2>
+            <div class="overflow-hidden border-0 shadow-lg" style="border-radius: 40px; background: var(--warm-beige);">
+                <div class="row g-0">
+                    <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
+                        <h3 class="fw-bold mb-4" style="color: var(--primary-green);">숲속에서 만나요!</h3>
+                        <p class="mb-4 text-muted">📍 경기 성남시 분당구 판교공원로1길 22-5 1층</p>
+                        <a href="https://map.naver.com/v5/search/산들생태학교" target="_blank" class="btn btn-success btn-lg rounded-pill shadow-sm">네이버 지도 열기</a>
+                    </div>
+                    <div class="col-md-7" style="min-height: 400px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.367066929944!2d127.08741367634283!3d37.392942433939634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5966504620f3%3A0xc312b9a7424699f8!2z7IKw65Ok7IOd7YOc7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1714061520000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="programModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">🌿 시즌별 특별 특강</h2>
+                    <ul class="fs-5 list-unstyled">
+                        <li class="mb-3">🌞 <b>하루숲나들이:</b> 계절의 변화를 만끽하는 원데이 클래스</li>
+                        <li class="mb-3">🌙 <b>야간탐사특강:</b> 밤의 숲소리를 듣고 생물을 관찰하는 모험</li>
+                        <li class="mb-3">💧 <b>계곡특강:</b> 무더운 여름, 시원한 계곡 속 생태 체험</li>
+                        <li class="mb-3">✨ <b>별자리캠프:</b> 밤하늘의 별을 보며 꿈을 키우는 숲 캠핑</li>
+                        <li class="mb-3">❄️ <b>겨우살이특강:</b> 추운 겨울, 숲의 지혜를 배우는 시간</li>
                     </ul>
                 </div>
             </div>
-
-            <div class="col-lg-9">
-                
-                <h3 class="section-title" data-aos="fade-up">활동 갤러리</h3>
-                <div class="row g-4">
-                    <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="post-card h-100 p-0" data-bs-toggle="modal" data-bs-target="#postModal1">
-                            <img src="images/mainprogram.jpg" class="w-100" alt="메인 프로그램" onerror="this.src='https://via.placeholder.com/400x250?text=Sandeul+Ecology'">
-                            <div class="p-4">
-                                <span class="badge bg-success mb-2">정규프로그램</span>
-                                <h5 class="fw-bold">메인 숲체험 프로그램</h5>
-                                <p class="text-muted small">자연과 교감하며 감수성을 키우는 산들만의 시그니처 활동입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-card h-100 p-0" data-bs-toggle="modal" data-bs-target="#postModal2">
-                            <img src="images/2025program.jpg" class="w-100" alt="2025 프로그램" onerror="this.src='https://via.placeholder.com/400x250?text=2025+Gallery'">
-                            <div class="p-4">
-                                <span class="badge bg-info mb-2 text-dark">2025 갤러리</span>
-                                <h5 class="fw-bold">2025년 활동 모아보기</h5>
-                                <p class="text-muted small">사계절의 변화를 함께했던 아이들의 소중한 기록입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 pt-4" data-aos="fade-up">
-                    <h3 class="section-title">오시는 길</h3>
-                    <div class="direction-card card overflow-hidden border-0 mb-5">
-                        <div class="row g-0">
-                            <div class="col-md-6 p-5">
-                                <h4 class="fw-bold mb-4">📍 찾아오시는 길</h4>
-                                <div class="mb-3">
-                                    <h6 class="fw-bold text-success">주소</h6>
-                                    <p>경기 성남시 분당구 판교공원로1길 22-5 1층</p>
-                                </div>
-                                <div class="mb-4">
-                                    <h6 class="fw-bold text-success">안내</h6>
-                                    <p class="small text-muted">판교도서관과 판교청소년수련관 바로 앞에 위치해 있습니다.</p>
-                                </div>
-                                <a href="https://map.naver.com/v5/search/산들생태학교" target="_blank" class="btn btn-success w-100 py-3 fw-bold shadow" style="border-radius: 15px;">
-                                    네이버 지도에서 길찾기
-                                </a>
-                            </div>
-                            <div class="col-md-6 map-container">
-                                <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.1754848354!2d127.0894!3d37.3917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b59364958d09f%3A0x6b49e5d47063d893!2z6rK96riw64-EIOyEseuCqOyLnCDtoTrsplitrgg7Yas6rWQ6rO17JuQ66GcMeq4uCAyMi01!5e0!3m2!1sko!2skr!4v1714000000000!5m2!1sko!2skr" 
-                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 
-    <div class="modal fade" id="postModal1" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 25px;">
-                <div class="modal-header border-0 pb-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body p-5 text-center">
-                    <img src="images/mainprogram.jpg" class="img-fluid rounded-4 mb-4 shadow" onerror="this.src='https://via.placeholder.com/600x400'">
-                    <h4 class="fw-bold mb-3">메인 프로그램 안내</h4>
-                    <p class="text-start">숲은 아이들에게 가장 큰 도서관이자 놀이터입니다. 산들생태학교의 숙련된 선생님들과 함께 자연의 소중함을 배우고 오감을 깨우는 특별한 시간을 가집니다.</p>
+    <div class="modal fade" id="programModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">📅 정기 방과후숲반 안내</h2>
+                    <ul class="fs-5 list-unstyled">
+                        <li class="mb-3">🎒 <b>연간 커리큘럼:</b> 매월 테마가 있는 체계적인 생태 교육</li>
+                        <li class="mb-3">🌳 <b>숲 관찰 일지:</b> 아이들이 직접 보고 느낀 자연을 기록</li>
+                        <li class="mb-3">🎨 <b>자연물 만들기:</b> 숲에서 얻은 재료로 만드는 창의 활동</li>
+                        <li class="mb-3">🤝 <b>사회성 향상:</b> 숲속 공동체 활동을 통한 협동심 함양</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="postModal2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 25px;">
-                <div class="modal-header border-0 pb-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body p-5 text-center">
-                    <img src="images/2025program.jpg" class="img-fluid rounded-4 mb-4 shadow" onerror="this.src='https://via.placeholder.com/600x400'">
-                    <h4 class="fw-bold mb-3">2025년 활동 기록</h4>
-                    <p class="text-start">봄의 새싹부터 겨울의 눈꽃까지, 산들생태학교와 함께한 아이들의 사계절 기록입니다. 매일이 축제 같았던 숲속의 하루를 만나보세요.</p>
+    <div class="modal fade" id="programModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">🐥 유치원/어린이집 숲나들이</h2>
+                    <ul class="fs-5 list-unstyled">
+                        <li class="mb-3">🔰 <b>안전한 체험:</b> 유아 전문 숲지도사가 동행하는 안전한 수업</li>
+                        <li class="mb-3">👂 <b>오감 체험:</b> 보고, 듣고, 만지며 자연과 친해지는 시간</li>
+                        <li class="mb-3">🎈 <b>숲속 놀이터:</b> 인위적인 교구 없이 자연 속에서 뛰어놀기</li>
+                        <li class="mb-3">🚌 <b>단체 맞춤형:</b> 원별 일정과 인원에 맞춘 커스터마이징 프로그램</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="programModal4" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">🏫 초·중등 교과연계 숲체험</h2>
+                    <ul class="fs-5 list-unstyled">
+                        <li class="mb-3">📝 <b>교과과정 반영:</b> 과학, 실과 등 교과서 속 자연을 직접 확인</li>
+                        <li class="mb-3">🔍 <b>생물 다양성 탐구:</b> 전문 장비를 이용한 정밀한 생태 관찰</li>
+                        <li class="mb-3">🌿 <b>환경 감수성 교육:</b> 기후 위기와 탄소 중립을 배우는 실천 수업</li>
+                        <li class="mb-3">🎓 <b>현장 학습 최적화:</b> 대규모 인원도 효율적으로 진행 가능한 전문 강사진</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-5 text-center bg-light mt-5">
+        <p class="text-muted small">© 2026 산들생태학교. All rights reserved.</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-    </script>
+    <script> AOS.init({ duration: 800, once: true }); </script>
 </body>
 </html>
