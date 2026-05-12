@@ -3,195 +3,1096 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>산들생태학교 | 자연과 함께하는 성장</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>산들생태학교 | 숲에서 배우는 아이들</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Dohyeon&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 
     <style>
         :root {
-            --primary-green: #3a5a40;
-            --soft-green: #a3b18a;
-            --leaf-green: #588157;
-            --warm-beige: #fefae0;
-            --point-yellow: #f9d423;
+            --lime: #9bff4f;
+            --lime-dark: #04c833;
+            --blue: #2967ff;
+            --black: #050505;
+            --white: #ffffff;
+            --paper: #f3f3f1;
+            --ink-soft: #666666;
+            --line: #dfdfd9;
         }
 
-        body { font-family: 'Pretendard', sans-serif; background-color: #fff; color: #333; overflow-x: hidden; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--paper);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
 
-        /* 🌿 네비게이션 바 */
-        .navbar { background-color: #fff; border-bottom: 1px solid #eee; padding: 15px 0; }
-        .nav-link { font-weight: 600; margin: 0 10px; color: #555 !important; font-size: 0.95rem; }
+        .top-strip {
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 900;
+            text-align: center;
+        }
 
-        /* 🌳 로고 헤더 섹션 (중앙 로고) */
-        .logo-header { padding: 60px 0 40px 0; text-align: center; }
-        .main-logo-img { width: 120px; height: auto; margin-bottom: 20px; }
-        .main-title { font-family: 'Dohyeon', sans-serif; font-size: 3.5rem; color: var(--primary-green); margin-bottom: 5px; }
-        .main-sub-title { font-family: 'Gaegu', cursive; font-size: 1.5rem; color: #888; }
+        .hero {
+            min-height: 92vh;
+            position: relative;
+            overflow: hidden;
+            background: var(--lime);
+            border-bottom: 10px solid var(--black);
+        }
 
-        /* 🍃 프로그램 카드 (링크 연결) */
-        .program-card { border: none; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
-        .program-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-img-wrapper { height: 250px; overflow: hidden; position: relative; }
-        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .badge-nature { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); padding: 5px 15px; border-radius: 50px; font-family: 'Gaegu', cursive; font-size: 1rem; z-index: 10; }
+        .nav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 24px 28px;
+            position: relative;
+            z-index: 5;
+        }
 
-        /* 📰 뉴스 섹션 */
-        .info-grid-section { padding: 80px 0; background-color: #fcfdf9; border-radius: 60px; margin: 60px 0; }
-        .section-sub-header { font-family: 'Dohyeon', sans-serif; font-size: 1.8rem; color: var(--primary-green); margin-bottom: 35px; display: flex; align-items: center; }
-        .section-sub-header i { margin-right: 12px; }
+        .brand {
+            font-size: 62px;
+            line-height: 1;
+            font-weight: 1000;
+            text-decoration: none;
+        }
 
-        .news-card { background: white; border-radius: 25px; padding: 15px; margin-bottom: 15px; display: flex; align-items: center; border: 1px solid #f0f0f0; transition: 0.3s; }
-        .news-card:hover { background-color: var(--warm-beige); transform: translateX(8px); }
-        .news-thumb { width: 80px; height: 60px; border-radius: 15px; object-fit: cover; margin-right: 15px; }
-        .news-tag { background: var(--point-yellow); color: #333; padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; margin-bottom: 5px; display: inline-block; }
-        .news-title { font-weight: 600; font-size: 0.95rem; color: #444; }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
 
-        /* 🗺️ 활동 지도 섹션 (⭐사용자님이 직접 수정한 스타일과 좌표 고정!) */
-        .visual-map-wrap { position: relative; background: white; border-radius: 30px; padding: 15px; border: 1px solid #f0f0f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .map-base-img { width: 100%; border-radius: 20px; }
-        
-        .map-marker { position: absolute; display: flex; align-items: center; background: white; padding: 2px 3px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: 'Gaegu', cursive; font-size: 0.75rem; font-weight: 800; z-index: 5; transition: 0.2s; }
-        .map-marker i { color: #d9534f; margin-right: 4px; }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 30px;
+            border: 3px solid transparent;
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--black);
+            font-weight: 900;
+            font-size: 18px;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
 
-        .m-seoul { top: 48%; left: 45%; }
-        .m-wirye-gangdong { top: 58%; left: 52%; }
-        .m-hanam-misa { top: 63%; left: 60%; }
-        .m-gwangmyeong-anyang { top: 65%; left: 41%; }
-        .m-pangyo-bundang { top: 68%; left: 52%; }
-        .m-uiwang-gunpo { top: 72%; left: 40%; }
-        .m-suji-heungdeok { top: 73%; left: 60%; }
-        .m-suwon-gwanggyo { top: 77%; left: 50%; }  
-        .m-ansan { top: 68%; left: 34%; }
-        .m-dongtan { top: 83%; left: 52%; }
+        .pill:hover { transform: translateY(-2px); }
+        .pill-dark { background: var(--black); color: var(--white); }
+        .pill-outline { background: transparent; border-color: var(--white); color: var(--white); }
 
-        /* 📱 우측 하단 상담 버튼 */
-        .fab-button { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background-color: var(--point-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 1000; color: #333; text-decoration: none; }
+        .hero-content {
+            min-height: calc(92vh - 150px);
+            display: grid;
+            place-items: center;
+            padding: 70px 28px 160px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-copy h1 {
+            margin: 0;
+            font-size: 96px;
+            line-height: 1.04;
+            font-weight: 1000;
+        }
+
+        .hero-copy p {
+            margin: 34px auto 0;
+            max-width: 760px;
+            font-size: 26px;
+            line-height: 1.65;
+            font-weight: 800;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 42px;
+        }
+
+        .earth-scene {
+            position: absolute;
+            left: 50%;
+            bottom: -145px;
+            width: 690px;
+            height: 340px;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .earth {
+            position: absolute;
+            left: 190px;
+            bottom: 0;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 58% 22%, var(--lime-dark) 0 21%, transparent 22%),
+                radial-gradient(circle at 24% 58%, var(--lime-dark) 0 25%, transparent 26%),
+                radial-gradient(circle at 74% 68%, var(--lime-dark) 0 24%, transparent 25%),
+                var(--blue);
+            border: 0;
+        }
+
+        .earth::before,
+        .earth::after {
+            content: "";
+            position: absolute;
+            background: var(--black);
+        }
+
+        .earth::before {
+            width: 136px;
+            height: 72px;
+            left: 92px;
+            top: 102px;
+            border: 12px solid var(--black);
+            border-top: 0;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-radius: 0 0 90px 90px;
+            background: transparent;
+        }
+
+        .earth::after {
+            width: 22px;
+            height: 46px;
+            left: 108px;
+            top: 86px;
+            border-radius: 50%;
+            box-shadow: 86px 0 0 var(--black);
+        }
+
+        .hand {
+            position: absolute;
+            left: 84px;
+            bottom: 118px;
+            width: 190px;
+            height: 78px;
+            border-radius: 52px;
+            background: var(--blue);
+            transform: rotate(52deg);
+        }
+
+        .hand::before {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 154px;
+            right: 26px;
+            bottom: 34px;
+            border-radius: 40px;
+            background: var(--blue);
+            transform: rotate(-28deg);
+        }
+
+        .cloud,
+        .cloud::before,
+        .cloud::after {
+            position: absolute;
+            background: var(--white);
+            border-radius: 999px;
+        }
+
+        .cloud { width: 140px; height: 46px; }
+        .cloud::before,
+        .cloud::after { content: ""; }
+        .cloud::before { width: 72px; height: 72px; left: 18px; bottom: 10px; }
+        .cloud::after { width: 80px; height: 80px; right: 14px; bottom: 8px; }
+        .cloud-one { left: 0; bottom: 102px; }
+        .cloud-two { right: 8px; bottom: 150px; }
+
+        .dashed-line {
+            position: absolute;
+            inset: 24px 8px 40px;
+            border: 8px dashed rgba(255,255,255,0.9);
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+        }
+
+        .section {
+            padding: 86px 28px;
+        }
+
+        .section-white { background: var(--white); }
+        .section-blue { background: var(--blue); color: var(--white); }
+        .wrap { max-width: 1920px; margin: 0 auto; }
+
+        .section-kicker {
+            margin: 0 0 16px;
+            color: var(--blue);
+            font-size: 18px;
+            font-weight: 1000;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 56px;
+            line-height: 1.15;
+            font-weight: 1000;
+        }
+
+        .section-lead {
+            margin: 22px 0 0;
+            max-width: 640px;
+            color: var(--ink-soft);
+            font-size: 21px;
+            line-height: 1.7;
+            font-weight: 750;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: 1.05fr repeat(4, 1fr);
+            gap: 22px;
+            align-items: stretch;
+            margin-top: 44px;
+        }
+
+        .program-intro,
+        .program-card,
+        .notice-card,
+        .album-card,
+        .stat-card {
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .program-intro {
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .program-intro h2 {
+            margin: 0;
+            font-size: 42px;
+            line-height: 1.2;
+            font-weight: 1000;
+        }
+
+        .program-intro p {
+            margin: 24px 0 0;
+            color: #c8c8c8;
+            font-size: 20px;
+            line-height: 1.65;
+            font-weight: 750;
+        }
+
+        .program-card {
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 28px;
+            color: var(--white);
+            text-decoration: none;
+            isolation: isolate;
+            transition: transform 0.22s;
+            cursor: pointer;
+        }
+
+        .program-card:hover { transform: translateY(-8px); }
+        .program-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .program-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.72));
+            z-index: -1;
+        }
+
+        .program-card .date {
+            position: absolute;
+            left: 28px;
+            top: 24px;
+            font-size: 17px;
+            font-weight: 950;
+        }
+
+        .program-card h3 {
+            margin: 0;
+            font-size: 26px;
+            line-height: 1.28;
+            font-weight: 1000;
+        }
+
+        .program-card .program-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 14px;
+            min-height: 44px;
+            padding: 0 20px;
+            border: 2px solid rgba(255,255,255,0.92);
+            border-radius: 999px;
+            background: rgba(0,0,0,0.24);
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .notice-layout {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .notice-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .notice-card {
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 26px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            text-decoration: none;
+        }
+
+        .notice-card strong {
+            font-size: 24px;
+            line-height: 1.35;
+            font-weight: 1000;
+        }
+
+        .notice-card small {
+            color: var(--ink-soft);
+            font-weight: 850;
+        }
+
+        .notice-card.featured {
+            background: var(--lime);
+            border-color: var(--black);
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 22px;
+            margin-top: 44px;
+        }
+
+        .album-card {
+            min-height: 380px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 28px;
+            color: var(--white);
+            text-decoration: none;
+            isolation: isolate;
+        }
+
+        .album-card.tall { min-height: 520px; }
+        .album-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .album-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.64));
+            z-index: -1;
+        }
+
+        .album-card.black {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .album-card.black::after { display: none; }
+        .album-card h3 {
+            margin: 0;
+            font-size: 30px;
+            line-height: 1.22;
+            font-weight: 1000;
+        }
+
+        .album-card p {
+            margin: 16px 0 0;
+            color: rgba(255,255,255,0.76);
+            font-size: 19px;
+            line-height: 1.6;
+            font-weight: 750;
+        }
+
+        .campaign {
+            display: grid;
+            grid-template-columns: 1fr 1fr 0.9fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .campaign-img {
+            height: 410px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .campaign-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .campaign-copy h2 {
+            margin: 0;
+            font-size: 52px;
+            line-height: 1.15;
+            font-weight: 1000;
+        }
+
+        .campaign-copy p {
+            margin: 28px 0 0;
+            color: rgba(255,255,255,0.84);
+            font-size: 23px;
+            line-height: 1.65;
+            font-weight: 750;
+        }
+
+        .report-layout {
+            display: grid;
+            grid-template-columns: 0.7fr 1fr 1fr;
+            gap: 26px;
+            align-items: stretch;
+        }
+
+        .report-copy h2 {
+            margin: 0;
+            font-size: 50px;
+            line-height: 1.18;
+            font-weight: 1000;
+        }
+
+        .report-copy p {
+            margin: 22px 0 0;
+            color: var(--ink-soft);
+            font-size: 22px;
+            line-height: 1.6;
+            font-weight: 750;
+        }
+
+        .stat-card {
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 34px;
+            background: var(--white);
+        }
+
+        .stat-card.lime { background: var(--lime); }
+        .stat-card.blue { background: var(--blue); color: var(--white); }
+        .stat-card .label {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 13px 24px;
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--blue);
+            font-weight: 1000;
+        }
+
+        .stat-card .number {
+            font-size: 64px;
+            line-height: 1;
+            font-weight: 1000;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .map-panel {
+            min-height: 500px;
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .map-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.86;
+        }
+
+        .contact-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px;
+            border-radius: 30px;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .contact-panel h2 {
+            margin: 0;
+            font-size: 46px;
+            line-height: 1.2;
+            font-weight: 1000;
+        }
+
+        .contact-panel p {
+            margin: 22px 0;
+            color: #d8d8d8;
+            font-size: 21px;
+            line-height: 1.65;
+            font-weight: 750;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-lime {
+            position: relative;
+            overflow: hidden;
+            background: var(--lime);
+            padding: 90px 28px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 46px;
+            align-items: center;
+            min-height: 380px;
+        }
+
+        .footer-brand {
+            font-size: 92px;
+            line-height: 1;
+            font-weight: 1000;
+        }
+
+        .footer-text {
+            margin-top: 28px;
+            font-size: 24px;
+            line-height: 1.55;
+            font-weight: 850;
+        }
+
+        .footer-form label {
+            display: block;
+            margin: 0 0 10px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .footer-form input {
+            width: 100%;
+            height: 56px;
+            margin-bottom: 22px;
+            padding: 0 24px;
+            border: 0;
+            border-radius: 999px;
+            background: var(--white);
+            font-size: 18px;
+            font-family: inherit;
+        }
+
+        .footer-bottom {
+            margin: 70px -28px 0;
+            padding: 34px 28px;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .modal-backdrop-custom {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0,0,0,0.68);
+            z-index: 1000;
+        }
+
+        .modal-backdrop-custom.show { display: flex; }
+
+        .modal-card {
+            width: min(720px, 100%);
+            max-height: 90vh;
+            overflow: auto;
+            border-radius: 30px;
+            background: var(--white);
+            padding: 28px;
+        }
+
+        .modal-card img {
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            border-radius: 24px;
+            margin-bottom: 24px;
+        }
+
+        .modal-card h2 {
+            margin: 0 0 16px;
+            font-size: 36px;
+            font-weight: 1000;
+        }
+
+        .modal-card p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 19px;
+            line-height: 1.7;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+        }
+
+        .icon-button {
+            width: 44px;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--white);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .fab-button {
+            position: fixed;
+            right: 28px;
+            bottom: 28px;
+            width: 66px;
+            height: 66px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 28px;
+            z-index: 30;
+            box-shadow: 0 16px 30px rgba(0,0,0,0.22);
+        }
+
+        @media (max-width: 1200px) {
+            .brand { font-size: 46px; }
+            .hero-copy h1 { font-size: 74px; }
+            .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .campaign,
+            .report-layout,
+            .location-grid,
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 760px) {
+            .top-strip { min-height: 42px; font-size: 14px; }
+            .nav { align-items: flex-start; flex-direction: column; padding: 20px; }
+            .brand { font-size: 38px; }
+            .nav-actions { gap: 8px; }
+            .pill { min-height: 44px; padding: 0 18px; font-size: 15px; }
+            .hero { min-height: 780px; }
+            .hero-content { padding: 42px 20px 190px; }
+            .hero-copy h1 { font-size: 52px; }
+            .hero-copy p { font-size: 19px; }
+            .earth-scene { width: 480px; transform: translateX(-50%) scale(0.75); transform-origin: bottom center; }
+            .section { padding: 62px 20px; }
+            .section-title { font-size: 40px; }
+            .section-lead { font-size: 18px; }
+            .program-grid,
+            .notice-layout,
+            .notice-list,
+            .album-grid { grid-template-columns: 1fr; }
+            .program-intro,
+            .program-card,
+            .album-card { min-height: 340px; }
+            .album-card.tall { min-height: 380px; }
+            .campaign-img,
+            .map-panel { height: 300px; min-height: 300px; }
+            .campaign-copy h2,
+            .report-copy h2,
+            .contact-panel h2 { font-size: 38px; }
+            .stat-card .number { font-size: 46px; }
+            .footer-brand { font-size: 52px; }
+            .footer-text { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
+    <div class="top-strip">자연을 만나는 작은 실천, 산들생태학교</div>
 
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <div class="ms-auto">
-                <a href="#intro" class="nav-link d-inline-block">소개</a>
-                <a href="#programs" class="nav-link d-inline-block">프로그램</a>
-                <a href="#activity-map" class="nav-link d-inline-block">활동 지역</a>
-                <a href="#contact" class="nav-link d-inline-block">오시는 길</a>
-                <button class="btn btn-outline-success btn-sm rounded-pill px-3 ms-2">로그인</button>
+    <header class="hero" id="intro">
+        <nav class="nav">
+            <a class="brand" href="#intro">SANDLE</a>
+            <div class="nav-actions">
+                <a class="pill" href="#programs">프로그램</a>
+                <a class="pill" href="#notice">소식</a>
+                <a class="pill" href="#album">앨범</a>
+                <a class="pill pill-dark" href="#contact">문의하기</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-copy">
+                <h1>산들생태학교</h1>
+                <p>숲에서 뛰고, 관찰하고, 질문하며 자라는 아이들의 생태 놀이터입니다.</p>
+                <div class="hero-cta">
+                    <a class="pill pill-dark" href="#programs">수업 둘러보기</a>
+                    <a class="pill" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">네이버 카페</a>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <header class="logo-header" id="intro">
-        <div class="container" data-aos="fade-down">
-            <img src="images/logo.jpg" alt="산들생태학교 로고" class="main-logo-img" onerror="this.src='https://via.placeholder.com/120?text=Logo'">
-            <h1 class="main-title">산들생태학교</h1>
-            <p class="main-sub-title">자연의 숨결을 느끼며 배우는 아이들의 놀이터</p>
+        <div class="earth-scene" aria-hidden="true">
+            <div class="dashed-line"></div>
+            <div class="cloud cloud-one"></div>
+            <div class="cloud cloud-two"></div>
+            <div class="hand"></div>
+            <div class="earth"></div>
         </div>
     </header>
 
-    <div class="container">
-        <h2 class="section-sub-header mb-4" data-aos="fade-right" id="programs"><i class="bi bi-stars"></i>추천 프로그램</h2>
-        <div class="row g-4 mb-5">
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <a href="detail1.html" class="program-card h-100 text-center text-decoration-none">
-                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#f9d423">시즌 특강</span><img src="images/banner1.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">시즌별 특별 특강</h5><button class="btn btn-dark btn-sm rounded-pill px-4">자세히 보기</button></div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <a href="detail2.html" class="program-card h-100 text-center text-decoration-none">
-                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#74c69d; color:white">정기 프로그램</span><img src="images/banner2.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">정기 방과후숲반</h5><button class="btn btn-dark btn-sm rounded-pill px-4">프로그램 안내</button></div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <a href="detail3.html" class="program-card h-100 text-center text-decoration-none">
-                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#8ecae6; color:white">단체 나들이</span><img src="images/banner3.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">유치원/어린이집</h5><button class="btn btn-dark btn-sm rounded-pill px-4">체험 신청</button></div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <a href="detail4.html" class="program-card h-100 text-center text-decoration-none">
-                    <div class="card-img-wrapper"><span class="badge-nature" style="background:#f9d423">교과 연계</span><img src="images/banner4.jpg"></div>
-                    <div class="p-4"><h5 class="fw-bold mb-3 text-dark">학교 숲체험</h5><button class="btn btn-dark btn-sm rounded-pill px-4">문의하기</button></div>
-                </a>
-            </div>
-        </div>
+    <main>
+        <section class="section section-white" id="programs">
+            <div class="wrap">
+                <p class="section-kicker">PROGRAM</p>
+                <h2 class="section-title">숲에서 만나는 네 가지 수업</h2>
+                <p class="section-lead">정기반부터 학교 연계 수업까지, 아이들의 나이와 일정에 맞춰 숲을 다르게 만납니다.</p>
 
-        <section class="info-grid-section px-4 px-md-5" id="activity-map">
-            <div class="row g-5">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <h3 class="section-sub-header"><i class="bi bi-megaphone"></i>산들 NEWS</h3>
-                    <div class="news-list">
-                        <div class="news-card">
-                            <img src="images/news1.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=MBC'">
-                            <div><span class="news-tag">MBC</span><div class="news-title">뉴스투데이 '산들생태학교' 방영</div></div>
+                <div class="program-grid">
+                    <div class="program-intro">
+                        <div>
+                            <h2>오늘의 숲은<br>어떤 얼굴일까요?</h2>
+                            <p>계절, 날씨, 장소에 따라 달라지는 숲을 아이들 눈높이에 맞춰 탐색합니다.</p>
                         </div>
-                        <div class="news-card">
-                            <img src="images/news2.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=TV'">
-                            <div><span class="news-tag">TV</span><div class="news-title">구해줘! 홈즈 숲체험 촬영 협조</div></div>
+                        <a class="pill pill-outline" href="#contact">상담하기</a>
+                    </div>
+
+                    <a class="program-card" href="detail1.html">
+                        <img src="images/banner1.jpg" alt="시즌별 특별 특강">
+                        <div class="date">시즌 특강</div>
+                        <div>
+                            <h3>시즌별 특별 특강</h3>
+                            <span class="program-action">자세히 보기</span>
                         </div>
-                        <div class="news-card">
-                            <img src="images/news3.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=NEW'">
-                            <div><span class="news-tag">NEW</span><div class="news-title">2026년 상반기 정규숲 예약 마감</div></div>
+                    </a>
+
+                    <a class="program-card" href="detail2.html">
+                        <img src="images/banner2.jpg" alt="정기 방과후숲반">
+                        <div class="date">정기 프로그램</div>
+                        <div>
+                            <h3>정기 방과후숲반</h3>
+                            <span class="program-action">프로그램 안내</span>
                         </div>
-                        <div class="news-card">
-                            <img src="images/news4.jpg" class="news-thumb" onerror="this.src='https://via.placeholder.com/80x60?text=EVENT'">
-                            <div><span class="news-tag">EVENT</span><div class="news-title">네이버 카페 리뉴얼 당첨자 발표</div></div>
+                    </a>
+
+                    <a class="program-card" href="detail3.html">
+                        <img src="images/banner3.jpg" alt="유치원 어린이집 단체 체험">
+                        <div class="date">단체 체험</div>
+                        <div>
+                            <h3>유치원/어린이집</h3>
+                            <span class="program-action">체험 신청</span>
                         </div>
+                    </a>
+
+                    <a class="program-card" href="detail4.html">
+                        <img src="images/banner4.jpg" alt="학교 숲체험">
+                        <div class="date">교과 연계</div>
+                        <div>
+                            <h3>학교 숲체험</h3>
+                            <span class="program-action">문의하기</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="notice">
+            <div class="wrap notice-layout">
+                <div>
+                    <p class="section-kicker">NEWS</p>
+                    <h2 class="section-title">소식 / 공지</h2>
+                    <p class="section-lead">모집 안내, 활동 소식, 언론 소개를 한눈에 확인하세요.</p>
+                    <div class="hero-cta" style="justify-content:flex-start;">
+                        <a class="pill pill-dark" href="https://cafe.naver.com/ArticleList.nhn?search.clubid=28707125&search.menuid=12&search.boardtype=I" target="_blank" rel="noopener">카페 공지 보기</a>
                     </div>
                 </div>
 
-                <div class="col-lg-6" data-aos="fade-left">
-                    <h3 class="section-sub-header"><i class="bi bi-map"></i>우리 동네 수업 지역</h3>
-                    <div class="visual-map-wrap">
-                        <img src="images/map.jpg" alt="활동 지도" class="map-base-img" onerror="this.src='https://via.placeholder.com/600x400?text=Map.jpg'">
-                        <div class="map-marker m-seoul"><i class="bi bi-geo-alt-fill"></i>서울</div>
-                        <div class="map-marker m-wirye-gangdong"><i class="bi bi-geo-alt-fill"></i>위례/강동</div>
-                        <div class="map-marker m-hanam-misa"><i class="bi bi-geo-alt-fill"></i>하남/미사</div>
-                        <div class="map-marker m-gwangmyeong-anyang"><i class="bi bi-geo-alt-fill"></i>광명/안양</div>
-                        <div class="map-marker m-pangyo-bundang"><i class="bi bi-geo-alt-fill"></i>판교/분당</div>
-                        <div class="map-marker m-uiwang-gunpo"><i class="bi bi-geo-alt-fill"></i>의왕/군포</div>
-                        <div class="map-marker m-suji-heungdeok"><i class="bi bi-geo-alt-fill"></i>수지/흥덕</div>
-                        <div class="map-marker m-suwon-gwanggyo"><i class="bi bi-geo-alt-fill"></i>수원/광교</div>
-                        <div class="map-marker m-ansan"><i class="bi bi-geo-alt-fill"></i>안산</div>
-                        <div class="map-marker m-dongtan"><i class="bi bi-geo-alt-fill"></i>동탄</div>
+                <div class="notice-list">
+                    <a class="notice-card featured" href="#newsModal3" data-modal="newsModal3">
+                        <small>모집 안내</small>
+                        <strong>2026년 상반기 정규숲 예약 마감</strong>
+                    </a>
+                    <a class="notice-card" href="#newsModal1" data-modal="newsModal1">
+                        <small>언론 소개</small>
+                        <strong>MBC 뉴스투데이 산들생태학교 방영</strong>
+                    </a>
+                    <a class="notice-card" href="#newsModal2" data-modal="newsModal2">
+                        <small>촬영 협조</small>
+                        <strong>MBC 구해줘! 홈즈 숲체험 촬영</strong>
+                    </a>
+                    <a class="notice-card" href="#newsModal4" data-modal="newsModal4">
+                        <small>커뮤니티</small>
+                        <strong>네이버 카페 리뉴얼 이벤트 당첨자 발표</strong>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-white" id="album">
+            <div class="wrap">
+                <p class="section-kicker">ALBUM</p>
+                <h2 class="section-title">따끈따끈 활동 앨범</h2>
+                <p class="section-lead">아이들이 숲에서 발견한 것들, 수업의 온도, 그날의 표정을 모았습니다.</p>
+
+                <div class="album-grid">
+                    <a class="album-card black tall" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">
+                        <div>
+                            <h3>새로운 숲수업 기록</h3>
+                            <p>이번 주 아이들이 만난 숲 이야기를 카페에서 더 살펴보세요.</p>
+                            <span class="pill pill-outline" style="margin-top:40px;">앨범 더 보기</span>
+                        </div>
+                    </a>
+                    <a class="album-card" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">
+                        <img src="images/banner1.jpg" alt="영흥숲공원 분홍포도팀">
+                        <div>
+                            <h3>영흥숲공원 분홍포도팀</h3>
+                            <p>숲길 관찰과 자연 놀이</p>
+                        </div>
+                    </a>
+                    <a class="album-card tall" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">
+                        <img src="images/banner2.jpg" alt="분당초 보리팀">
+                        <div>
+                            <h3>분당초 1학년 보리팀</h3>
+                            <p>학교 연계 생태 수업</p>
+                        </div>
+                    </a>
+                    <a class="album-card" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">
+                        <img src="images/banner3.jpg" alt="유치원 어린이집 나들이">
+                        <div>
+                            <h3>유치원/어린이집 나들이</h3>
+                            <p>아이 눈높이에 맞춘 숲 탐방</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-blue">
+            <div class="wrap campaign">
+                <div class="campaign-img"><img src="images/mainprogram.jpg" alt="산들생태학교 활동"></div>
+                <div class="campaign-img"><img src="images/news1.jpg" alt="산들생태학교 현장"></div>
+                <div class="campaign-copy">
+                    <h2>카페와 함께 보는 산들 이야기</h2>
+                    <p>공지, 사진, 수업 기록은 네이버 카페에도 함께 쌓아두고 있습니다.</p>
+                    <div class="hero-cta" style="justify-content:flex-start;">
+                        <a class="pill pill-outline" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">카페 방문하기</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="my-5 pt-5" id="contact" data-aos="fade-up">
-            <h2 class="section-sub-header"><i class="bi bi-geo-alt"></i>오시는 길</h2>
-            <div class="overflow-hidden border-0 shadow-lg" style="border-radius: 40px; background: var(--warm-beige);">
-                <div class="row g-0">
-                    <div class="col-md-5 p-5 d-flex flex-column justify-content-center text-center text-md-start">
-                        <h3 class="fw-bold mb-4" style="color: var(--primary-green);">숲속에서 만나요!</h3>
-                        <p class="mb-4 text-muted">📍 경기 성남시 분당구 판교공원로1길 22-5 1층</p>
-                        <a href="https://map.naver.com/v5/search/산들생태학교" target="_blank" class="btn btn-success btn-lg rounded-pill shadow-sm">네이버 지도로 열기</a>
+        <section class="section">
+            <div class="wrap report-layout">
+                <div class="report-copy">
+                    <h2>숲수업 리포트</h2>
+                    <p>서울과 경기 남부 곳곳에서 아이들을 만나고 있습니다.</p>
+                </div>
+                <div class="stat-card blue">
+                    <span class="label">수업 지역</span>
+                    <div class="number">10곳+</div>
+                </div>
+                <div class="stat-card lime">
+                    <span class="label">운영 프로그램</span>
+                    <div class="number">4종+</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-white" id="contact">
+            <div class="wrap location-grid">
+                <div class="map-panel">
+                    <img src="images/map.jpg" alt="산들생태학교 활동 지역 지도">
+                </div>
+                <div class="contact-panel">
+                    <div>
+                        <h2>숲속에서 만나요</h2>
+                        <p>경기 성남시 분당구 판교공원로1길 22-5 1층</p>
                     </div>
-                    <div class="col-md-7" style="min-height: 400px;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.367066929944!2d127.08741367634283!3d37.392942433939634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5966504620f3%3A0xc312b9a7424699f8!2z7IKw65Ok7IOd7YOc7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1714061520000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="contact-actions">
+                        <a class="pill" href="https://map.naver.com/v5/search/%EC%82%B0%EB%93%A4%EC%83%9D%ED%83%9C%ED%95%99%EA%B5%90" target="_blank" rel="noopener">네이버 지도</a>
+                        <a class="pill" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">카페 문의</a>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer class="footer-lime">
+        <div class="wrap footer-grid">
+            <div>
+                <div class="footer-brand">SANDLE</div>
+                <div class="footer-text">자연의 숨결을 느끼며 배우는 아이들의 생태 놀이터</div>
+            </div>
+            <form class="footer-form" onsubmit="event.preventDefault(); alert('상담 신청은 네이버 카페 문의로 연결해 주세요.');">
+                <label for="name">이름</label>
+                <input id="name" name="name" autocomplete="name">
+                <label for="email">연락처</label>
+                <input id="email" name="email" autocomplete="tel">
+                <button class="pill pill-dark" type="submit">상담 신청하기</button>
+            </form>
+        </div>
+        <div class="footer-bottom">© 2026 산들생태학교. All rights reserved.</div>
+    </footer>
+
+    <div class="modal-backdrop-custom" id="newsModal1" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle1">
+            <div class="modal-close"><button class="icon-button" type="button" data-close-modal aria-label="닫기"><i class="bi bi-x"></i></button></div>
+            <img src="images/news1.jpg" alt="MBC 뉴스">
+            <h2 id="newsTitle1">MBC 뉴스투데이 방영</h2>
+            <p>산들생태학교의 자연 친화적 교육 철학이 MBC 뉴스투데이에 소개되었습니다. 아이들이 숲에서 스스로 배우고 성장하는 생생한 현장을 확인해 보세요.</p>
         </div>
     </div>
 
-    <footer class="py-5 text-center bg-light mt-5">
-        <p class="text-muted small">© 2026 산들생태학교. All rights reserved.</p>
-    </footer>
+    <div class="modal-backdrop-custom" id="newsModal2" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle2">
+            <div class="modal-close"><button class="icon-button" type="button" data-close-modal aria-label="닫기"><i class="bi bi-x"></i></button></div>
+            <img src="images/news2.jpg" alt="구해줘 홈즈">
+            <h2 id="newsTitle2">MBC 구해줘! 홈즈 촬영 협조</h2>
+            <p>숲세권 특집 촬영팀이 산들생태학교를 방문했습니다. 숲과 집이 어우러지는 풍경과 함께 즐거운 촬영 현장을 만들었습니다.</p>
+        </div>
+    </div>
 
-    <a href="#" class="fab-button"><i class="bi bi-chat-dots-fill"></i></a>
+    <div class="modal-backdrop-custom" id="newsModal3" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle3">
+            <div class="modal-close"><button class="icon-button" type="button" data-close-modal aria-label="닫기"><i class="bi bi-x"></i></button></div>
+            <h2 id="newsTitle3">2026 상반기 예약 마감</h2>
+            <p>보내주신 성원에 힘입어 2026년 상반기 정규 숲반 예약이 모두 마감되었습니다. 하반기 모집 공고는 카페를 통해 안내드릴 예정입니다.</p>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script> AOS.init({ duration: 800, once: true }); </script>
+    <div class="modal-backdrop-custom" id="newsModal4" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle4">
+            <div class="modal-close"><button class="icon-button" type="button" data-close-modal aria-label="닫기"><i class="bi bi-x"></i></button></div>
+            <h2 id="newsTitle4">카페 리뉴얼 이벤트 당첨자</h2>
+            <p>산들 카페 리뉴얼 축하 댓글 이벤트 당첨자를 발표합니다. 당첨되신 분들께는 개별 메시지를 드렸으니 확인 부탁드립니다.</p>
+        </div>
+    </div>
+
+    <a href="#contact" class="fab-button" aria-label="상담 안내로 이동"><i class="bi bi-chat-dots-fill"></i></a>
+
+    <script>
+        document.querySelectorAll("[data-modal]").forEach(function (trigger) {
+            trigger.addEventListener("click", function (event) {
+                event.preventDefault();
+                var modal = document.getElementById(trigger.getAttribute("data-modal"));
+                if (!modal) return;
+                modal.classList.add("show");
+                modal.setAttribute("aria-hidden", "false");
+            });
+        });
+
+        document.querySelectorAll("[data-close-modal]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var modal = button.closest(".modal-backdrop-custom");
+                if (!modal) return;
+                modal.classList.remove("show");
+                modal.setAttribute("aria-hidden", "true");
+            });
+        });
+
+        document.querySelectorAll(".modal-backdrop-custom").forEach(function (modal) {
+            modal.addEventListener("click", function (event) {
+                if (event.target !== modal) return;
+                modal.classList.remove("show");
+                modal.setAttribute("aria-hidden", "true");
+            });
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") return;
+            document.querySelectorAll(".modal-backdrop-custom.show").forEach(function (modal) {
+                modal.classList.remove("show");
+                modal.setAttribute("aria-hidden", "true");
+            });
+        });
+
+        document.querySelectorAll(".program-card").forEach(function (card) {
+            card.addEventListener("click", function (event) {
+                if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                var href = card.getAttribute("href");
+                if (!href) return;
+                event.preventDefault();
+                window.location.href = href;
+            });
+        });
+    </script>
 </body>
 </html>
