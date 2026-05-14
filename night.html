@@ -139,6 +139,11 @@
             filter: saturate(1.06);
         }
 
+        .main-photo.poster-photo img {
+            object-fit: contain;
+            background: #241f5a;
+        }
+
         .photo-badge {
             position: absolute;
             left: 28px;
@@ -642,12 +647,12 @@
 
         <section class="product-layout" id="booking">
             <div class="gallery">
-                <div class="main-photo">
+                <div class="main-photo poster-photo">
                     <span class="photo-badge">6월 야간탐사</span>
-                    <img src="images/banner1.jpg" alt="야간탐사 숲체험 대표 이미지">
+                    <img src="images/night-poster.jpg" alt="야간탐사 숲체험 대표 이미지" onerror="this.onerror=null; this.src='images/banner1.jpg';">
                 </div>
                 <div class="thumb-grid">
-                    <div class="thumb"><img src="images/banner2.jpg" alt="숲체험 활동 이미지"></div>
+                    <div class="thumb"><img src="images/banner1.jpg" alt="계곡탐사 활동 이미지"></div>
                     <div class="thumb"><img src="images/banner3.jpg" alt="자연 관찰 활동 이미지"></div>
                     <div class="thumb"><img src="images/mainprogram.jpg" alt="산들생태학교 프로그램 이미지"></div>
                 </div>

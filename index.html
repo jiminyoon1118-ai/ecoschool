@@ -9,9 +9,25 @@
     <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 
     <style>
+        @font-face {
+            font-family: "Binggre";
+            src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff") format("woff");
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Binggre";
+            src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Binggrae-Bold.woff2") format("woff2");
+            font-weight: 700;
+            font-display: swap;
+        }
+
         :root {
             --lime: #9bff4f;
             --lime-dark: #04c833;
+            --strip-green: #7fbe3a;
+            --brand-green: #087b3a;
             --blue: #2967ff;
             --black: #050505;
             --white: #ffffff;
@@ -37,45 +53,205 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--black);
-            color: var(--white);
+            background: var(--strip-green);
+            color: var(--black);
             font-size: 18px;
             font-weight: 900;
             text-align: center;
         }
 
         .hero {
-            min-height: 92vh;
             position: relative;
             overflow: hidden;
-            background: var(--lime);
-            border-bottom: 10px solid var(--black);
+            background: var(--white);
+            border-bottom: 1px solid var(--line);
         }
 
         .nav {
             width: 100%;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr;
             align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            padding: 24px 28px;
+            justify-items: center;
+            gap: 26px;
+            padding: 34px 28px 24px;
             position: relative;
             z-index: 5;
         }
 
         .brand {
-            font-size: 62px;
+            font-family: "Binggre", "Pretendard", system-ui, sans-serif;
+            font-size: 70px;
             line-height: 1;
-            font-weight: 1000;
+            font-weight: 700;
+            color: var(--brand-green);
             text-decoration: none;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 14px;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 46px;
+            height: 46px;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            background: transparent;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        .menu-toggle span,
+        .menu-toggle span::before,
+        .menu-toggle span::after {
+            display: block;
+            width: 30px;
+            height: 3px;
+            border-radius: 999px;
+            background: currentColor;
+        }
+
+        .menu-toggle span {
+            position: relative;
+        }
+
+        .menu-toggle span::before,
+        .menu-toggle span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .menu-toggle span::before { top: -10px; }
+        .menu-toggle span::after { top: 10px; }
+
+        .mobile-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            display: none;
+            background: rgba(0,0,0,0.58);
+            z-index: 950;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0 auto 0 0;
+            width: min(84vw, 380px);
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+            color: var(--black);
+            transform: translateX(-105%);
+            transition: transform 0.24s ease;
+            z-index: 960;
+            box-shadow: 18px 0 36px rgba(0,0,0,0.24);
+        }
+
+        .mobile-menu-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .mobile-menu-brand {
+            font-family: "Binggre", "Pretendard", system-ui, sans-serif;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .mobile-menu-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 14px 8px 0;
+        }
+
+        .mobile-menu-tabs a {
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-bottom-color: #bababa;
+            color: var(--black);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .mobile-menu-tabs a:first-child {
+            color: #ff2626;
+        }
+
+        .mobile-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 8px 34px;
+        }
+
+        .mobile-menu-list {
+            display: grid;
+        }
+
+        .mobile-menu-list a {
+            display: flex;
+            align-items: center;
+            min-height: 54px;
+            padding: 0 16px;
+            border-bottom: 1px solid #eeeeea;
+            color: var(--black);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .mobile-menu-info {
+            display: grid;
+            gap: 18px;
+            padding: 28px 18px 0;
+        }
+
+        .mobile-menu-info section {
+            border-left: 4px solid var(--black);
+            padding-left: 14px;
+        }
+
+        .mobile-menu-info h3 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            line-height: 1.25;
+            font-weight: 1000;
+        }
+
+        .mobile-menu-info p,
+        .mobile-menu-info a {
+            margin: 0;
+            color: var(--black);
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        body.menu-open .mobile-menu-backdrop {
+            display: block;
+        }
+
+        body.menu-open .mobile-menu {
+            transform: translateX(0);
         }
 
         .pill {
@@ -99,21 +275,14 @@
         .pill-dark { background: var(--black); color: var(--white); }
         .pill-outline { background: transparent; border-color: var(--white); color: var(--white); }
 
-        .hero-content {
-            min-height: calc(92vh - 150px);
-            display: grid;
-            place-items: center;
-            padding: 70px 28px 160px;
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
+        .hero-content { display: none; }
 
         .hero-copy h1 {
             margin: 0;
+            font-family: "Binggre", "Pretendard", system-ui, sans-serif;
             font-size: 96px;
             line-height: 1.04;
-            font-weight: 1000;
+            font-weight: 700;
         }
 
         .hero-copy p {
@@ -267,12 +436,126 @@
             font-weight: 750;
         }
 
+        #programs .section-lead {
+            max-width: none;
+            white-space: nowrap;
+        }
+
         .program-grid {
             display: grid;
-            grid-template-columns: 1.05fr repeat(4, 1fr);
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 22px;
             align-items: stretch;
-            margin-top: 44px;
+            margin-top: 0;
+        }
+
+        .program-dots {
+            display: none;
+        }
+
+        .program-story {
+            max-width: 980px;
+            margin: 58px auto 0;
+            text-align: center;
+        }
+
+        .program-tags {
+            color: var(--ink-soft);
+            font-size: 20px;
+            font-weight: 850;
+        }
+
+        .program-story h2 {
+            margin: 22px 0 0;
+            font-family: "Binggre", "Pretendard", system-ui, sans-serif;
+            font-size: 58px;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .program-story p {
+            margin: 20px auto 0;
+            max-width: 780px;
+            color: var(--ink-soft);
+            font-size: 23px;
+            line-height: 1.65;
+            font-weight: 750;
+        }
+
+        .program-story p strong {
+            display: inline-block;
+            margin-bottom: 4px;
+            color: var(--black);
+            font-weight: 950;
+        }
+
+        .program-story-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .program-earth {
+            position: relative;
+            width: min(560px, 100%);
+            height: 250px;
+            margin: 34px auto 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .program-earth .dashed-line {
+            inset: 28px 28px 58px;
+            border-width: 6px;
+            border-color: rgba(155,255,79,0.88);
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        .program-earth .earth {
+            left: 50%;
+            bottom: -112px;
+            transform: translateX(-50%) scale(0.78);
+            transform-origin: center bottom;
+        }
+
+        .program-earth .hand {
+            left: calc(50% - 188px);
+            bottom: 74px;
+            transform: rotate(52deg) scale(0.72);
+            transform-origin: center;
+        }
+
+        .program-earth .cloud-one {
+            left: 40px;
+            bottom: 24px;
+            transform: scale(0.72);
+            transform-origin: left bottom;
+            background: var(--lime);
+        }
+
+        .program-earth .cloud-one::before,
+        .program-earth .cloud-one::after {
+            background: var(--lime);
+        }
+
+        .program-earth .cloud-two {
+            right: 32px;
+            bottom: 54px;
+            transform: scale(0.72);
+            transform-origin: right bottom;
+        }
+
+        #programs {
+            padding-top: 34px;
+        }
+
+        #programs .section-kicker,
+        #programs .section-title,
+        #programs .section-lead {
+            display: none;
         }
 
         .program-intro,
@@ -462,13 +745,14 @@
         }
 
         .program-intro {
-            min-height: 400px;
+            min-height: 560px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 44px;
             background: var(--black);
             color: var(--white);
+            text-decoration: none;
         }
 
         .program-intro h2 {
@@ -954,7 +1238,7 @@
         }
 
         @media (max-width: 1200px) {
-            .brand { font-size: 46px; }
+            .brand { font-size: 56px; }
             .hero-copy h1 { font-size: 74px; }
             .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -967,25 +1251,100 @@
 
         @media (max-width: 760px) {
             .top-strip { min-height: 42px; font-size: 14px; }
-            .nav { align-items: flex-start; flex-direction: column; padding: 20px; }
-            .brand { font-size: 38px; }
-            .nav-actions { gap: 8px; }
+            .nav {
+                grid-template-columns: 46px 1fr 46px;
+                gap: 8px;
+                padding: 18px 16px 14px;
+            }
+            .brand { font-size: 42px; }
+            .menu-toggle { display: inline-flex; justify-self: start; }
+            .nav-actions { display: none; }
             .pill { min-height: 44px; padding: 0 18px; font-size: 15px; }
-            .hero { min-height: 780px; }
+            .hero { min-height: 0; }
             .hero-content { padding: 42px 20px 190px; }
             .hero-copy h1 { font-size: 52px; }
             .hero-copy p { font-size: 19px; }
             .earth-scene { width: 480px; transform: translateX(-50%) scale(0.75); transform-origin: bottom center; }
             .section { padding: 62px 20px; }
+            #programs { padding-top: 26px; }
             .section-title { font-size: 40px; }
             .section-lead { font-size: 18px; }
-            .program-grid,
+            #programs .section-lead { white-space: normal; }
             .notice-layout,
             .notice-list,
             .album-grid,
             .night-layout,
             .field-grid,
             .session-grid { grid-template-columns: 1fr; }
+            .program-grid {
+                display: flex;
+                gap: 16px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-padding: 20px;
+                padding: 0 20px 8px;
+                margin: 0 -20px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .program-grid::-webkit-scrollbar { display: none; }
+            .program-grid .program-card {
+                flex: 0 0 min(86vw, 430px);
+                scroll-snap-align: center;
+                scroll-snap-stop: always;
+            }
+            .program-dots {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 18px;
+            }
+            .program-dot {
+                width: 11px;
+                height: 11px;
+                border: 0;
+                border-radius: 999px;
+                background: #d1d1d1;
+                padding: 0;
+            }
+            .program-dot.active {
+                background: var(--black);
+                transform: scale(1.1);
+            }
+            .program-story {
+                margin-top: 36px;
+                padding: 0 4px;
+            }
+            .program-tags { font-size: 16px; }
+            .program-story h2 { font-size: 42px; }
+            .program-story p {
+                font-size: 18px;
+                line-height: 1.6;
+            }
+            .program-story-actions { margin-top: 22px; }
+            .program-earth {
+                height: 210px;
+                margin-top: 26px;
+            }
+            .program-earth .earth {
+                bottom: -126px;
+                transform: translateX(-50%) scale(0.66);
+            }
+            .program-earth .hand {
+                left: calc(50% - 154px);
+                bottom: 58px;
+                transform: rotate(52deg) scale(0.58);
+            }
+            .program-earth .cloud-one {
+                left: 14px;
+                bottom: 18px;
+                transform: scale(0.58);
+            }
+            .program-earth .cloud-two {
+                right: 10px;
+                bottom: 42px;
+                transform: scale(0.58);
+            }
             .program-intro,
             .program-card,
             .album-card,
@@ -1004,11 +1363,14 @@
     </style>
 </head>
 <body>
-    <div class="top-strip">자연을 만나는 작은 실천, 산들생태학교</div>
+    <div class="top-strip">숲에서 신나는 시간, 산들생태학교</div>
 
     <header class="hero" id="intro">
         <nav class="nav">
-            <a class="brand" href="#intro">SANDLE</a>
+            <button class="menu-toggle" type="button" aria-label="모바일 메뉴 열기" aria-controls="mobileMenu" aria-expanded="false">
+                <span></span>
+            </button>
+            <a class="brand" href="#intro">산들생태학교</a>
             <div class="nav-actions">
                 <a class="pill" href="#programs">프로그램</a>
                 <a class="pill" href="#notice">소식</a>
@@ -1016,45 +1378,68 @@
                 <a class="pill pill-dark" href="#contact">문의하기</a>
             </div>
         </nav>
+    </header>
 
-        <div class="hero-content">
-            <div class="hero-copy">
-                <h1>산들생태학교</h1>
-                <p>숲에서 뛰고, 관찰하고, 질문하며 자라는 아이들의 생태 놀이터입니다.</p>
-                <div class="hero-cta">
-                    <a class="pill pill-dark" href="#programs">수업 둘러보기</a>
-                    <a class="pill" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">네이버 카페</a>
-                </div>
+    <div class="mobile-menu-backdrop" data-menu-close></div>
+    <aside class="mobile-menu" id="mobileMenu" aria-hidden="true" aria-label="모바일 메뉴">
+        <div class="mobile-menu-head">
+            <div class="mobile-menu-brand">산들생태학교</div>
+            <button class="icon-button" type="button" data-menu-close aria-label="모바일 메뉴 닫기"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mobile-menu-tabs">
+            <a href="#programs">숲체험 프로그램</a>
+            <a href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">COMMUNITY</a>
+        </div>
+        <div class="mobile-menu-content">
+            <nav class="mobile-menu-list" aria-label="모바일 주요 링크">
+                <a href="#programs">전체 프로그램</a>
+                <a href="valley.html">계곡탐사 특강</a>
+                <a href="night.html">야간탐사</a>
+                <a href="detail2.html">주말생태학교 정규반, 하루숲</a>
+                <a href="detail3.html">유치원/어린이집 단체 체험</a>
+                <a href="detail4.html">학교 숲체험</a>
+                <a href="#notice">소식 / 공지</a>
+                <a href="#album">활동 앨범</a>
+                <a href="#contact">문의하기</a>
+            </nav>
+            <div class="mobile-menu-info">
+                <section>
+                    <h3>산들생태학교 소개</h3>
+                    <p>숲에서 뛰고, 관찰하고, 질문하며 자라는 아이들의 생태 놀이터입니다.</p>
+                </section>
+                <section>
+                    <h3>CS CENTER</h3>
+                    <p><a href="tel:010-2641-8112">010-2641-8112</a></p>
+                    <p><a href="tel:031-702-8112">031-702-8112</a></p>
+                    <p>평일 10:00~17:00<br>수업 중에는 답변이 늦을 수 있어요.</p>
+                </section>
+                <section>
+                    <h3>COMMUNITY</h3>
+                    <p><a href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">네이버 카페에서 공지와 활동 사진 보기</a></p>
+                </section>
             </div>
         </div>
-
-        <div class="earth-scene" aria-hidden="true">
-            <div class="dashed-line"></div>
-            <div class="cloud cloud-one"></div>
-            <div class="cloud cloud-two"></div>
-            <div class="hand"></div>
-            <div class="earth"></div>
-        </div>
-    </header>
+    </aside>
 
     <main>
         <section class="section section-white" id="programs">
             <div class="wrap">
                 <p class="section-kicker">PROGRAM</p>
-                <h2 class="section-title">숲에서 만나는 네 가지 수업</h2>
-                <p class="section-lead">정기반부터 학교 연계 수업까지, 아이들의 나이와 일정에 맞춰 숲을 다르게 만납니다.</p>
+                <h2 class="section-title">숲에서 만나는 다섯 가지 수업</h2>
+                <p class="section-lead">주말 정기반부터 하루숲, 계곡탐사, 야간탐사까지 아이들의 나이와 일정에 맞춰 숲을 다르게 만납니다.</p>
 
                 <div class="program-grid">
-                    <div class="program-intro">
+                    <a class="program-card" href="valley.html">
+                        <img src="images/banner1.jpg" alt="계곡탐사 특강">
+                        <div class="date">시즌 특강</div>
                         <div>
-                            <h2>오늘의 숲은<br>어떤 얼굴일까요?</h2>
-                            <p>계절, 날씨, 장소에 따라 달라지는 숲을 아이들 눈높이에 맞춰 탐색합니다.</p>
+                            <h3>계곡탐사<br>특강</h3>
+                            <span class="program-action">예약하기</span>
                         </div>
-                        <a class="pill pill-outline" href="#contact">상담하기</a>
-                    </div>
+                    </a>
 
                     <a class="program-card" href="night.html">
-                        <img src="images/banner1.jpg" alt="야간탐사 숲체험">
+                        <img src="images/night-poster.jpg" alt="야간탐사 숲체험" onerror="this.onerror=null; this.src='images/banner1.jpg';">
                         <div class="date">시즌 특강</div>
                         <div>
                             <h3>야간탐사</h3>
@@ -1063,10 +1448,10 @@
                     </a>
 
                     <a class="program-card" href="detail2.html">
-                        <img src="images/banner2.jpg" alt="정기 방과후숲반">
+                        <img src="images/regular-program.jpg" alt="주말생태학교 정규반 하루숲" onerror="this.onerror=null; this.src='images/banner2.jpg';">
                         <div class="date">정기 프로그램</div>
                         <div>
-                            <h3>정기 방과후숲반</h3>
+                            <h3>주말생태학교<br>정규반, 하루숲</h3>
                             <span class="program-action">프로그램 안내</span>
                         </div>
                     </a>
@@ -1089,6 +1474,27 @@
                         </div>
                     </a>
                 </div>
+                <div class="program-dots" aria-label="프로그램 배너 위치"></div>
+                <section class="program-story" aria-label="산들생태학교 소개">
+                    <div class="program-tags">#숲체험 #어린이프로그램 #야외활동</div>
+                    <h2>숲에서 놀자!</h2>
+                    <p>
+                        <strong>"숲에서 자라는 나무와 같은 아이들"</strong><br>
+                        숲에서 뛰고, 관찰하고, 질문하며 자연을 닮은 아이로 자라납니다.<br>
+                        산들생태학교의 하루는 매번 다른 계절을 만나는 특별한 시간입니다.
+                    </p>
+                    <div class="program-story-actions">
+                        <a class="pill pill-dark" href="#programs">수업 둘러보기</a>
+                        <a class="pill" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">네이버 카페</a>
+                    </div>
+                    <div class="program-earth" aria-hidden="true">
+                        <div class="dashed-line"></div>
+                        <div class="cloud cloud-one"></div>
+                        <div class="cloud cloud-two"></div>
+                        <div class="hand"></div>
+                        <div class="earth"></div>
+                    </div>
+                </section>
             </div>
         </section>
 
@@ -1104,7 +1510,6 @@
                 </div>
 
                 <div class="notice-list">
-                    <div class="notice-card empty" aria-label="추후 공지 추가 예정"></div>
                     <a class="notice-card" href="#newsModal1" data-modal="newsModal1">
                         <small>언론 소개</small>
                         <strong>MBC 뉴스투데이 산들생태학교 방영</strong>
@@ -1113,6 +1518,7 @@
                         <small>촬영 협조</small>
                         <strong>MBC 구해줘! 홈즈 숲체험 촬영</strong>
                     </a>
+                    <div class="notice-card empty" aria-label="추후 공지 추가 예정"></div>
                     <div class="notice-card empty" aria-label="추후 공지 추가 예정"></div>
                 </div>
             </div>
@@ -1272,6 +1678,28 @@
     <a href="#contact" class="fab-button" aria-label="상담 안내로 이동"><i class="bi bi-chat-dots-fill"></i></a>
 
     <script>
+        var menuToggle = document.querySelector(".menu-toggle");
+        var mobileMenu = document.getElementById("mobileMenu");
+        var menuCloseTriggers = document.querySelectorAll("[data-menu-close], .mobile-menu a");
+
+        function setMobileMenu(open) {
+            document.body.classList.toggle("menu-open", open);
+            if (menuToggle) menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            if (mobileMenu) mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
+        }
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener("click", function () {
+                setMobileMenu(!document.body.classList.contains("menu-open"));
+            });
+
+            menuCloseTriggers.forEach(function (trigger) {
+                trigger.addEventListener("click", function () {
+                    setMobileMenu(false);
+                });
+            });
+        }
+
         document.querySelectorAll("[data-modal]").forEach(function (trigger) {
             trigger.addEventListener("click", function (event) {
                 event.preventDefault();
@@ -1301,11 +1729,54 @@
 
         document.addEventListener("keydown", function (event) {
             if (event.key !== "Escape") return;
+            setMobileMenu(false);
             document.querySelectorAll(".modal-backdrop-custom.show").forEach(function (modal) {
                 modal.classList.remove("show");
                 modal.setAttribute("aria-hidden", "true");
             });
         });
+
+        var programGrid = document.querySelector(".program-grid");
+        var programCards = programGrid ? Array.prototype.slice.call(programGrid.querySelectorAll(".program-card")) : [];
+        var programDots = document.querySelector(".program-dots");
+
+        if (programGrid && programDots && programCards.length) {
+            programCards.forEach(function (card, index) {
+                var dot = document.createElement("button");
+                dot.className = "program-dot" + (index === 0 ? " active" : "");
+                dot.type = "button";
+                dot.setAttribute("aria-label", (index + 1) + "번째 프로그램 보기");
+                dot.addEventListener("click", function () {
+                    card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                });
+                programDots.appendChild(dot);
+            });
+
+            var updateProgramDots = function () {
+                var gridCenter = programGrid.scrollLeft + programGrid.clientWidth / 2;
+                var activeIndex = 0;
+                var closestDistance = Infinity;
+
+                programCards.forEach(function (card, index) {
+                    var cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                    var distance = Math.abs(cardCenter - gridCenter);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        activeIndex = index;
+                    }
+                });
+
+                programDots.querySelectorAll(".program-dot").forEach(function (dot, index) {
+                    dot.classList.toggle("active", index === activeIndex);
+                });
+            };
+
+            programGrid.addEventListener("scroll", function () {
+                window.requestAnimationFrame(updateProgramDots);
+            }, { passive: true });
+            window.addEventListener("resize", updateProgramDots);
+            updateProgramDots();
+        }
 
         document.querySelectorAll(".program-card").forEach(function (card) {
             card.addEventListener("click", function (event) {

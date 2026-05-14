@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계곡탐사 특강 예약 | 산들생태학교</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <style>
+        :root { --lime:#9bff4f; --blue:#2967ff; --black:#050505; --white:#fff; --paper:#f3f3f1; --soft:#666; --line:#deded8; }
+        * { box-sizing:border-box; }
+        body { margin:0; font-family:"Pretendard",system-ui,sans-serif; background:var(--paper); color:var(--black); }
+        a { color:inherit; } img { max-width:100%; display:block; }
+        .top-strip { min-height:48px; display:flex; align-items:center; justify-content:center; padding:10px 18px; background:var(--black); color:var(--white); font-size:17px; font-weight:1000; text-align:center; }
+        .header { background:var(--lime); border-bottom:8px solid var(--black); }
+        .nav { max-width:1540px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 28px; }
+        .brand { font-size:58px; line-height:1; font-weight:1000; text-decoration:none; }
+        .nav-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:12px; }
+        .pill { min-height:50px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0 26px; border:3px solid transparent; border-radius:999px; background:var(--white); color:var(--black); text-decoration:none; font-size:17px; font-weight:1000; white-space:nowrap; transition:transform .2s; }
+        .pill:hover { transform:translateY(-2px); }
+        .pill-dark { background:var(--black); color:var(--white); }
+        .pill-blue { background:var(--blue); color:var(--white); }
+        .pill-outline { background:transparent; border-color:var(--black); }
+        .page { max-width:1540px; margin:0 auto; padding:54px 28px 86px; }
+        .breadcrumb { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; color:var(--soft); font-size:15px; font-weight:850; }
+        .product-layout { display:grid; grid-template-columns:minmax(0,1.02fr) minmax(440px,.98fr); gap:34px; align-items:start; }
+        .gallery { display:grid; gap:18px; }
+        .main-photo { min-height:620px; position:relative; border-radius:30px; overflow:hidden; background:var(--black); }
+        .main-photo img { width:100%; height:100%; min-height:620px; object-fit:cover; filter:saturate(1.06); }
+        .photo-badge { position:absolute; left:28px; top:28px; padding:12px 18px; border-radius:999px; background:var(--lime); color:var(--black); font-size:18px; font-weight:1000; }
+        .thumb-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+        .thumb { height:160px; border-radius:22px; overflow:hidden; background:var(--black); }
+        .thumb img { width:100%; height:100%; object-fit:cover; }
+        .product-panel { position:sticky; top:24px; border-radius:30px; background:var(--white); padding:34px; }
+        .status-row { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
+        .status { display:inline-flex; align-items:center; min-height:36px; padding:0 14px; border-radius:999px; background:var(--black); color:var(--white); font-size:14px; font-weight:1000; }
+        .status.lime { background:var(--lime); color:var(--black); }
+        h1 { margin:0; font-size:58px; line-height:1.08; font-weight:1000; }
+        .summary { margin:18px 0 0; color:var(--soft); font-size:18px; line-height:1.65; font-weight:750; }
+        .price-row { display:flex; align-items:end; justify-content:space-between; gap:18px; padding:26px 0; border-bottom:2px solid var(--line); }
+        .price-label { color:var(--soft); font-size:16px; font-weight:900; }
+        .price { font-size:48px; line-height:1; font-weight:1000; }
+        .info-table { display:grid; padding:18px 0 8px; border-bottom:2px solid var(--line); }
+        .info-line { display:grid; grid-template-columns:118px 1fr; gap:16px; padding:10px 0; font-size:16px; line-height:1.5; font-weight:800; }
+        .info-line b { color:var(--soft); }
+        .order-box { margin-top:24px; border-radius:22px; overflow:hidden; border:2px solid var(--black); }
+        .order-line { display:grid; grid-template-columns:1fr auto; gap:12px; padding:18px; background:var(--paper); font-weight:900; }
+        .order-total { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:20px 18px; background:var(--black); color:var(--white); }
+        .order-total b { font-size:18px; } .order-total strong { font-size:34px; line-height:1; }
+        .payment-bridge { display:grid; gap:14px; margin-top:18px; padding:18px; border-radius:22px; background:var(--lime); border:3px solid var(--black); }
+        .payment-bridge h2 { margin:0; font-size:24px; line-height:1.25; font-weight:1000; }
+        .payment-bridge p { margin:0; color:#1f1f1f; font-size:15px; line-height:1.55; font-weight:850; }
+        .payment-bridge .pill { width:100%; min-height:58px; }
+        .detail-section { margin-top:58px; display:grid; grid-template-columns:.82fr 1.18fr; gap:28px; align-items:start; }
+        .section-title { margin:0; font-size:52px; line-height:1.12; font-weight:1000; }
+        .section-lead { margin:18px 0 0; color:var(--soft); font-size:20px; line-height:1.65; font-weight:800; }
+        .card-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+        .info-card { min-height:190px; border-radius:26px; padding:26px; background:var(--white); }
+        .info-card.lime { background:var(--lime); } .info-card.blue { background:var(--blue); color:var(--white); } .info-card.black { background:var(--black); color:var(--white); }
+        .info-card i { display:block; margin-bottom:26px; font-size:42px; }
+        .info-card h3 { margin:0 0 12px; font-size:24px; line-height:1.25; font-weight:1000; }
+        .info-card p { margin:0; color:inherit; opacity:.78; font-size:16px; line-height:1.55; font-weight:800; }
+        .notice-panel { margin-top:28px; border-radius:30px; background:var(--white); padding:32px; }
+        .notice-panel h2 { margin:0 0 16px; font-size:34px; line-height:1.2; font-weight:1000; }
+        .notice-list { display:grid; gap:12px; margin:0; padding:0; list-style:none; }
+        .notice-list li { display:grid; grid-template-columns:24px 1fr; gap:12px; color:var(--soft); font-size:17px; line-height:1.55; font-weight:800; }
+        footer { padding:38px 28px; background:var(--black); color:var(--white); text-align:center; font-weight:850; }
+        @media (max-width:1100px) { .product-layout,.detail-section { grid-template-columns:1fr; } .product-panel { position:static; } }
+        @media (max-width:760px) { .top-strip{font-size:14px}.nav{align-items:flex-start;flex-direction:column;padding:20px}.brand{font-size:42px}.nav-actions{justify-content:flex-start}.pill{min-height:46px;padding:0 20px;font-size:15px}.page{padding:34px 18px 62px}.product-panel{padding:24px;border-radius:24px}h1{font-size:42px}.price{font-size:38px}.main-photo,.main-photo img{min-height:380px}.thumb-grid,.card-grid{grid-template-columns:1fr}.thumb{height:130px}.section-title{font-size:40px}.info-line{grid-template-columns:1fr;gap:4px} }
+    </style>
+</head>
+<body>
+    <div class="top-strip">계곡에서 만나는 물속 생물과 수서곤충 탐사</div>
+
+    <header class="header">
+        <nav class="nav">
+            <a class="brand" href="index.html">SANDLE</a>
+            <div class="nav-actions">
+                <a class="pill" href="index.html">홈</a>
+                <a class="pill" href="index.html#programs">프로그램</a>
+                <a class="pill pill-dark" href="#booking">예약하기</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page">
+        <div class="breadcrumb">
+            <span>홈</span>
+            <span>/</span>
+            <span>시즌 특별숲</span>
+            <span>/</span>
+            <strong>계곡탐사 특강</strong>
+        </div>
+
+        <section class="product-layout" id="booking">
+            <div class="gallery">
+                <div class="main-photo">
+                    <span class="photo-badge">계곡탐사 특강</span>
+                    <img src="images/banner1.jpg" alt="계곡탐사 특강 대표 이미지">
+                </div>
+                <div class="thumb-grid">
+                    <div class="thumb"><img src="images/banner1.jpg" alt="계곡탐사 안내 이미지"></div>
+                    <div class="thumb"><img src="images/banner3.jpg" alt="자연 관찰 활동 이미지"></div>
+                    <div class="thumb"><img src="images/mainprogram.jpg" alt="산들생태학교 프로그램 이미지"></div>
+                </div>
+            </div>
+
+            <aside class="product-panel">
+                <div class="status-row">
+                    <span class="status lime">예약 접수중</span>
+                    <span class="status">시즌 특강</span>
+                    <span class="status">보호자 동반</span>
+                </div>
+                <h1>계곡탐사<br>특강</h1>
+                <p class="summary">시원한 계곡에서 물속 생물과 수서곤충을 관찰하는 시즌 특강입니다. 자연 속에서 직접 보고, 만지고, 기록하며 생태 감수성을 키웁니다.</p>
+
+                <div class="price-row">
+                    <div>
+                        <div class="price-label">1인 참가비</div>
+                        <div class="price">35,000원</div>
+                    </div>
+                    <span class="status lime">서울/경기</span>
+                </div>
+
+                <div class="info-table">
+                    <div class="info-line"><b>대상</b><span>5세 이상 어린이와 보호자</span></div>
+                    <div class="info-line"><b>장소</b><span>계곡 수업 가능 장소 별도 안내</span></div>
+                    <div class="info-line"><b>시간</b><span>약 90분 진행</span></div>
+                    <div class="info-line"><b>준비물</b><span>여벌 옷, 물놀이 신발, 개인 물, 수건</span></div>
+                </div>
+
+                <div class="order-box">
+                    <div class="order-line">
+                        <span>예약/결제 방식</span>
+                        <span>네이버 스토어</span>
+                    </div>
+                    <div class="order-total">
+                        <b>PRICE</b>
+                        <strong>35,000원</strong>
+                    </div>
+                </div>
+
+                <div class="payment-bridge">
+                    <h2>날짜, 인원, 결제는 네이버 스토어에서 선택합니다</h2>
+                    <p>웹사이트에서는 프로그램 내용을 확인하고, 실제 예약 정보와 결제 내역은 네이버 스마트스토어 주문으로 안전하게 관리합니다.</p>
+                    <a class="pill pill-blue" href="https://smartstore.naver.com/1748047004/products/13528539173" target="_blank" rel="noopener"><i class="bi bi-bag-check-fill"></i> 네이버 스토어에서 예약/결제하기</a>
+                    <a class="pill pill-outline" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">문의하기</a>
+                </div>
+            </aside>
+        </section>
+
+        <section class="detail-section">
+            <div>
+                <h2 class="section-title">계곡은 작은 생태계입니다</h2>
+                <p class="section-lead">물의 흐름, 돌 밑의 생물, 계곡 주변 식물을 함께 관찰하며 아이들이 자연을 입체적으로 이해하도록 돕습니다.</p>
+            </div>
+            <div class="card-grid">
+                <article class="info-card lime">
+                    <i class="bi bi-droplet-half"></i>
+                    <h3>물속 생물 관찰</h3>
+                    <p>수서곤충과 작은 생물의 움직임을 안전하게 살펴봅니다.</p>
+                </article>
+                <article class="info-card blue">
+                    <i class="bi bi-search-heart"></i>
+                    <h3>관찰 도구 활용</h3>
+                    <p>채집통과 돋보기로 생김새와 서식 환경을 기록합니다.</p>
+                </article>
+                <article class="info-card black">
+                    <i class="bi bi-shield-check"></i>
+                    <h3>안전한 계곡 활동</h3>
+                    <p>얕은 물가 중심으로 이동하고 보호자 동반으로 진행합니다.</p>
+                </article>
+                <article class="info-card">
+                    <i class="bi bi-journal-text"></i>
+                    <h3>탐사 기록 나누기</h3>
+                    <p>마지막에는 발견한 생물과 궁금한 점을 함께 정리합니다.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="notice-panel">
+            <h2>예약 전 확인사항</h2>
+            <ul class="notice-list">
+                <li><i class="bi bi-check2-circle"></i><span>비가 많이 오거나 물이 불어난 경우 안전을 위해 일정이 변경될 수 있습니다.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>미끄럼 방지를 위해 물놀이 신발과 여벌 옷을 준비해 주세요.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>날짜, 인원, 결제 정보는 네이버 스마트스토어 상품 옵션과 주문 내역으로 관리됩니다.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>결제 전 문의가 필요한 분은 네이버 카페 문의를 이용해 주세요.</span></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>© 2026 산들생태학교. All rights reserved.</footer>
+</body>
+</html>
