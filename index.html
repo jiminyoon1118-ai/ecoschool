@@ -279,9 +279,186 @@
         .program-card,
         .notice-card,
         .album-card,
-        .stat-card {
+        .stat-card,
+        .night-card,
+        .reservation-panel {
             border-radius: 30px;
             overflow: hidden;
+        }
+
+        .night-section {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .night-layout {
+            display: grid;
+            grid-template-columns: 0.82fr 1.18fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .night-card {
+            min-height: 620px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.66)),
+                url("images/banner1.jpg") center / cover;
+        }
+
+        .night-card .section-kicker { color: var(--lime); }
+        .night-card .section-title { color: var(--white); }
+        .night-card .section-lead { color: rgba(255,255,255,0.82); }
+
+        .night-points {
+            display: grid;
+            gap: 12px;
+            margin-top: 38px;
+        }
+
+        .night-point {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .night-point i { color: var(--lime); }
+
+        .reservation-panel {
+            padding: 34px;
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .reservation-panel h3 {
+            margin: 0 0 22px;
+            font-size: 34px;
+            line-height: 1.2;
+            font-weight: 1000;
+        }
+
+        .session-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .session-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .session-option span {
+            min-height: 126px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 18px;
+            border: 3px solid var(--line);
+            border-radius: 22px;
+            background: var(--paper);
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .session-option small {
+            display: block;
+            color: var(--ink-soft);
+            line-height: 1.45;
+            font-weight: 800;
+        }
+
+        .session-option input:checked + span {
+            border-color: var(--black);
+            background: var(--lime);
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .field { display: grid; gap: 8px; }
+        .field.full { grid-column: 1 / -1; }
+        .field label {
+            font-size: 16px;
+            font-weight: 950;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            min-height: 54px;
+            border: 3px solid var(--line);
+            border-radius: 18px;
+            padding: 0 16px;
+            background: var(--paper);
+            color: var(--black);
+            font: inherit;
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .field textarea {
+            min-height: 112px;
+            padding: 16px;
+            resize: vertical;
+        }
+
+        .agree-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 18px 0 22px;
+            color: var(--ink-soft);
+            font-weight: 800;
+            line-height: 1.55;
+        }
+
+        .agree-row input {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+        }
+
+        .reservation-result {
+            display: none;
+            margin-top: 24px;
+            padding: 22px;
+            border-radius: 22px;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .reservation-result.show { display: block; }
+        .reservation-result textarea {
+            width: 100%;
+            min-height: 220px;
+            border: 0;
+            border-radius: 18px;
+            padding: 18px;
+            background: #1d1d1d;
+            color: var(--white);
+            font: inherit;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .result-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
         }
 
         .program-intro {
@@ -408,6 +585,11 @@
         .notice-card.featured {
             background: var(--lime);
             border-color: var(--black);
+        }
+
+        .notice-card.empty {
+            background: rgba(255,255,255,0.54);
+            border: 2px dashed #d2d2cb;
         }
 
         .album-grid {
@@ -557,19 +739,49 @@
             align-items: stretch;
         }
 
-        .map-panel {
+        .service-panel {
             min-height: 500px;
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            background: var(--black);
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
-        .map-panel img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.86;
+        .service-card {
+            min-height: 238px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px;
+            border-radius: 30px;
+            background: var(--white);
+            border: 1px solid var(--line);
+        }
+
+        .service-card.lime { background: var(--lime); border-color: var(--black); }
+        .service-card.blue { background: var(--blue); color: var(--white); border-color: var(--blue); }
+        .service-card.black { background: var(--black); color: var(--white); border-color: var(--black); }
+
+        .service-card small {
+            color: inherit;
+            opacity: 0.68;
+            font-weight: 1000;
+        }
+
+        .service-card strong {
+            display: block;
+            margin-top: 20px;
+            font-size: 28px;
+            line-height: 1.22;
+            font-weight: 1000;
+        }
+
+        .service-card p {
+            margin: 16px 0 0;
+            color: inherit;
+            opacity: 0.72;
+            font-size: 17px;
+            line-height: 1.55;
+            font-weight: 800;
         }
 
         .contact-panel {
@@ -747,6 +959,7 @@
             .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .campaign,
+            .night-layout,
             .report-layout,
             .location-grid,
             .footer-grid { grid-template-columns: 1fr; }
@@ -769,13 +982,18 @@
             .program-grid,
             .notice-layout,
             .notice-list,
-            .album-grid { grid-template-columns: 1fr; }
+            .album-grid,
+            .night-layout,
+            .field-grid,
+            .session-grid { grid-template-columns: 1fr; }
             .program-intro,
             .program-card,
-            .album-card { min-height: 340px; }
+            .album-card,
+            .night-card { min-height: 340px; }
             .album-card.tall { min-height: 380px; }
-            .campaign-img,
-            .map-panel { height: 300px; min-height: 300px; }
+            .campaign-img { height: 300px; min-height: 300px; }
+            .service-panel { grid-template-columns: 1fr; }
+            .service-card { min-height: 180px; }
             .campaign-copy h2,
             .report-copy h2,
             .contact-panel h2 { font-size: 38px; }
@@ -835,12 +1053,12 @@
                         <a class="pill pill-outline" href="#contact">상담하기</a>
                     </div>
 
-                    <a class="program-card" href="detail1.html">
-                        <img src="images/banner1.jpg" alt="시즌별 특별 특강">
+                    <a class="program-card" href="night.html">
+                        <img src="images/banner1.jpg" alt="야간탐사 숲체험">
                         <div class="date">시즌 특강</div>
                         <div>
-                            <h3>시즌별 특별 특강</h3>
-                            <span class="program-action">자세히 보기</span>
+                            <h3>야간탐사</h3>
+                            <span class="program-action">예약하기</span>
                         </div>
                     </a>
 
@@ -886,10 +1104,7 @@
                 </div>
 
                 <div class="notice-list">
-                    <a class="notice-card featured" href="#newsModal3" data-modal="newsModal3">
-                        <small>모집 안내</small>
-                        <strong>2026년 상반기 정규숲 예약 마감</strong>
-                    </a>
+                    <div class="notice-card empty" aria-label="추후 공지 추가 예정"></div>
                     <a class="notice-card" href="#newsModal1" data-modal="newsModal1">
                         <small>언론 소개</small>
                         <strong>MBC 뉴스투데이 산들생태학교 방영</strong>
@@ -898,10 +1113,7 @@
                         <small>촬영 협조</small>
                         <strong>MBC 구해줘! 홈즈 숲체험 촬영</strong>
                     </a>
-                    <a class="notice-card" href="#newsModal4" data-modal="newsModal4">
-                        <small>커뮤니티</small>
-                        <strong>네이버 카페 리뉴얼 이벤트 당첨자 발표</strong>
-                    </a>
+                    <div class="notice-card empty" aria-label="추후 공지 추가 예정"></div>
                 </div>
             </div>
         </section>
@@ -978,16 +1190,43 @@
 
         <section class="section section-white" id="contact">
             <div class="wrap location-grid">
-                <div class="map-panel">
-                    <img src="images/map.jpg" alt="산들생태학교 활동 지역 지도">
+                <div class="service-panel">
+                    <article class="service-card lime">
+                        <small>01 PROGRAM</small>
+                        <div>
+                            <strong>프로그램 선택</strong>
+                            <p>아이 나이와 일정에 맞춰 시즌 특강, 정규반, 단체 체험을 고릅니다.</p>
+                        </div>
+                    </article>
+                    <article class="service-card blue">
+                        <small>02 BOOKING</small>
+                        <div>
+                            <strong>예약/결제 진행</strong>
+                            <p>야간탐사는 상품 페이지에서 내용을 확인하고 네이버 스토어에서 결제합니다.</p>
+                        </div>
+                    </article>
+                    <article class="service-card">
+                        <small>03 GUIDE</small>
+                        <div>
+                            <strong>준비 안내 발송</strong>
+                            <p>장소, 준비물, 안전 안내를 카페 또는 문자로 전달합니다.</p>
+                        </div>
+                    </article>
+                    <article class="service-card black">
+                        <small>04 FIELD</small>
+                        <div>
+                            <strong>숲에서 만나요</strong>
+                            <p>정해진 장소에서 출석 확인 후 소수 정원으로 안전하게 진행합니다.</p>
+                        </div>
+                    </article>
                 </div>
                 <div class="contact-panel">
                     <div>
-                        <h2>숲속에서 만나요</h2>
-                        <p>경기 성남시 분당구 판교공원로1길 22-5 1층</p>
+                        <h2>예약과 문의는<br>한 곳에서</h2>
+                        <p>프로그램 신청, 준비물 확인, 활동 사진은 네이버 카페와 상품 페이지로 연결합니다.</p>
                     </div>
                     <div class="contact-actions">
-                        <a class="pill" href="https://map.naver.com/v5/search/%EC%82%B0%EB%93%A4%EC%83%9D%ED%83%9C%ED%95%99%EA%B5%90" target="_blank" rel="noopener">네이버 지도</a>
+                        <a class="pill" href="night.html">야간탐사 예약</a>
                         <a class="pill" href="https://cafe.naver.com/sandeulsam" target="_blank" rel="noopener">카페 문의</a>
                     </div>
                 </div>
@@ -1027,22 +1266,6 @@
             <img src="images/news2.jpg" alt="구해줘 홈즈">
             <h2 id="newsTitle2">MBC 구해줘! 홈즈 촬영 협조</h2>
             <p>숲세권 특집 촬영팀이 산들생태학교를 방문했습니다. 숲과 집이 어우러지는 풍경과 함께 즐거운 촬영 현장을 만들었습니다.</p>
-        </div>
-    </div>
-
-    <div class="modal-backdrop-custom" id="newsModal3" aria-hidden="true">
-        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle3">
-            <div class="modal-close"><button class="icon-button" type="button" data-close-modal aria-label="닫기"><i class="bi bi-x"></i></button></div>
-            <h2 id="newsTitle3">2026 상반기 예약 마감</h2>
-            <p>보내주신 성원에 힘입어 2026년 상반기 정규 숲반 예약이 모두 마감되었습니다. 하반기 모집 공고는 카페를 통해 안내드릴 예정입니다.</p>
-        </div>
-    </div>
-
-    <div class="modal-backdrop-custom" id="newsModal4" aria-hidden="true">
-        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle4">
-            <div class="modal-close"><button class="icon-button" type="button" data-close-modal aria-label="닫기"><i class="bi bi-x"></i></button></div>
-            <h2 id="newsTitle4">카페 리뉴얼 이벤트 당첨자</h2>
-            <p>산들 카페 리뉴얼 축하 댓글 이벤트 당첨자를 발표합니다. 당첨되신 분들께는 개별 메시지를 드렸으니 확인 부탁드립니다.</p>
         </div>
     </div>
 
